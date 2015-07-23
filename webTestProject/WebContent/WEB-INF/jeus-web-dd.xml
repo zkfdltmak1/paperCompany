@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jeus-web-dd xmlns="http://www.tmaxsoft.com/xml/ns/jeus" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://www.tmaxsoft.com/xml/ns/jeus http://www.tmaxsoft.com/xml/ns/jeus6/jeus-web-dd.xsd" 
+	version="6.0">
+    <context-path>/webTestProject</context-path>
+    <auto-reload>
+        <enable-reload>true</enable-reload>
+        <check-on-demand>true</check-on-demand>
+    </auto-reload>
+    <jsp-engine>
+        <compile-option>-g</compile-option>
+    </jsp-engine>
+    <fast-deploy>false</fast-deploy>
+</jeus-web-dd>

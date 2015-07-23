@@ -1,0 +1,171 @@
+@CHARSET "UTF-8";
+
+@media screen 
+and (min-device-width: 768px)
+and (max-device-width: 1024px) {
+	#display_size{
+		width: 80%;
+		height : 130px;
+		margin: 0 auto;
+	}
+	.menu{
+		padding: 0;
+	}
+	.menu a{cursor:pointer;}
+	.menu .hide{display:none;}
+	
+	header{
+		width: 100%;
+		height: 130px;
+		background-color: #777777;
+		background-image: url("../../image/paper.jpg");
+		background-repeat: no-repeat;
+		background-position: left center;
+	}
+	
+	header nav{
+		float: right;
+		width: 65%;
+		margin-top: 40px;
+	}
+	nav{
+		margin: 0 auto;
+		padding: 0;
+	}
+	
+	nav ul{
+		list-style-type: none;
+		margin: 0 auto;
+		
+		
+	}
+	
+	nav ul li{
+		width : 130px;
+		display: inline;
+		float: left;
+		font-weight: bold;
+		margin: 10px;
+		padding-bottom: 10px;
+		
+	}
+	
+	nav ul li a{
+		color: white;
+		text-decoration: none;
+		font-size: 1.3em;
+		
+	}
+	
+	#div_01, #b_logout{
+		padding-right: 10px;
+		color : white;
+		float: right;
+		clear : both;
+	 }
+	 
+	.hide li{
+	 	clear : both;
+	 	border : 1px solid black;
+	 	width : 106px;
+	 	height : 38px;
+		display: block;
+		margin: 2px;
+		text-align: center;
+		padding: 0;
+	}
+	
+	.dropdown-menu li {
+		margin : 0 auto;
+		padding : 0;
+		text-align: center;
+		color: black;
+		font-size: 1em;
+		padding: 0;
+	}
+}
+
+@media screen 
+and (min-device-width: 1280px)
+and (max-device-width: 1680px) {
+	#display_size{
+		width: 80%;
+		height : 150px;
+		margin: 0 auto;
+	}
+	.menu{
+		padding: 0;
+	}
+	.menu a{cursor:pointer;}
+	.menu .hide{display:none;}
+	
+	header{
+		width: 100%;
+		height: 150px;
+		background-color: #777777;
+		background-image: url("../../image/paper.jpg");
+		background-repeat: no-repeat;
+		background-position: left center;
+	}
+	
+	header nav{
+		float: right;
+		width: 70%;
+		margin-top: 30px;
+	}
+	nav{
+		margin: 0 auto;
+		padding: 0;
+	}
+	
+	nav ul{
+		list-style-type: none;
+		margin: 0 auto;
+		
+		
+	}
+	
+	nav ul li{
+		width : 180px;
+		display: inline;
+		float: left;
+		font-weight: bold;
+		margin: 10px;
+		padding-bottom: 45px;
+		
+	}
+	
+	nav ul li a{
+		color: white;
+		text-decoration: none;
+		font-size: 2em;
+		
+	}
+	
+	#div_01, #b_logout{
+		padding-right: 10px;
+		color : white;
+		float: right;
+		clear : both;
+	 }
+	 
+	.hide li{
+	 	clear : both;
+	 	border : 1px solid black;
+	 	width : 116px;
+	 	height : 48px;
+		display: block;
+		margin: 2px;
+		text-align: center;
+		padding: 0;
+	}
+	
+	.dropdown-menu li {
+		margin : 0 auto;
+		padding : 0;
+		text-align: center;
+		color: black;
+		font-size: 1em;
+		padding: 0;
+	}
+}
