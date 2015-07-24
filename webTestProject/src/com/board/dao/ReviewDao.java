@@ -84,42 +84,29 @@ public class ReviewDao {
 		StringBuffer tml= new StringBuffer();
 		tml.append("select reviews_number, reviews_title, reviews_content, reviews_pw, m_email from Reviews_forum");
 		
-		DBConnectionMgr dbMgr = null;
-		Connection	con = null;
-		PreparedStatement pstmt = null;
-		ResultSet	rs = null;
-
 		try{
 			con = dbMgr.getConnection();
 			pstmt = con.prepareStatement(tml.toString());
-			
 			rs = pstmt.executeQuery();
+			
 			while(rs.next()){
-					ReviewVO rvo = new ReviewVO();
-					rvo.setReviews_number(rs.getInt("reviews_number"));
-					rvo.setReviews_title(rs.getString("reviews_title"));
-					rvo.setReviews_content(rs.getString("reviews_content"));
-					rvo.setReviews_pw(rs.getString("reviews_pw"));
-					rvo.setM_email(rs.getString("m_email"));
-					reviewList.add(rvo);
-					
+				ReviewVO rvo = new ReviewVO();
+				rvo.setReviews_number(rs.getInt("reviews_number"));
+				rvo.setReviews_title(rs.getString("reviews_title"));
+				rvo.setReviews_content(rs.getString("reviews_content"));
+				rvo.setReviews_pw(rs.getString("reviews_pw"));
+				rvo.setM_email(rs.getString("m_email"));
+				reviewList.add(rvo);
 			}
+			System.out.println("reviewList size : " + reviewList.size());
 		}catch(SQLException se){
 			System.out.println("se = [ "+se+" ]");
 		}catch (Exception e){
 			System.out.println("e = [ "+e+" ]");
 		}finally{
-			try{
-				if(rs != null)rs.close();
-				if(pstmt != null)pstmt.close();
-				if(con != null)con.close();
-			}catch(SQLException se){
-				System.out.println("se = [ "+se+" ]");
-			}
-			
+			dbMgr.freeConnection(con, pstmt, rs);
 		}
 		return reviewList;
-		
 	}
 	
 }

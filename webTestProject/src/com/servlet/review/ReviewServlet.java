@@ -1,6 +1,7 @@
 package com.servlet.review;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -52,10 +53,11 @@ public class ReviewServlet extends HttpServlet{
 			resp.sendRedirect("./papercompany/review/reviews_list.jsp");
 		}
 		else if("getReviewList".equals(command)){
-		List<ReviewVO> reviewList = null;
+			List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 			reviewList = rDao.getReviewList();
 			req.setAttribute("reviewList", reviewList);
-			RequestDispatcher view = req.getRequestDispatcher("./Reviews");
+			RequestDispatcher view = 
+					req.getRequestDispatcher("./papercompany/review/reviews_list.jsp");
 			view.forward(req, resp);//이동	 
 		}
 	}

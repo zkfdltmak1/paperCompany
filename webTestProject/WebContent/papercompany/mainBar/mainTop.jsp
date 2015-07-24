@@ -17,6 +17,11 @@
 <link rel="stylesheet" type="text/css" href="../../style/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../../style/css/main/mainTop.css"/>
 <script type="text/javascript">
+	function fnGetReview(){
+		document.f_getReview.action="/webTestProject/review_board.review";
+		document.f_getReview.method="post";
+		document.f_getReview.submit();
+	}
 	
 	function LogOut(){
 		alert("로그아웃");
@@ -76,7 +81,12 @@
 							</div>
 						</div>
 					</li>
-	        		<li><a href="../review/reviews_list.jsp">후기 게시판</a> </li>
+	        		<li>
+	        			<form name="f_getReview">
+	        				<a href="javascript:fnGetReview()">후기 게시판</a>
+	        				<input type="hidden" name="command" value="getReviewList"> 
+	        			</form>
+	        		</li>
 				</ul> 
 			</nav>
 		</header>
