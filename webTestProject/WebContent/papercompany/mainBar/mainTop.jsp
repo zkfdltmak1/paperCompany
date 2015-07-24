@@ -12,6 +12,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, 
                maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<script type="text/javascript" src="../../style/js/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../style/js/bootstrap/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../style/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../../style/css/main/mainTop.css"/>
 <script type="text/javascript">
 	
 	function LogOut(){
@@ -57,7 +61,7 @@
 			<%} %>
 			<nav>
 				<ul>
-					<li><a href="#">공지사항</a></li>
+					<li><a href="../forum/forum_board.jsp">공지사항</a></li>
 					<li class="menu">
 		            	<div class="bs-example">
 							<div class="dropdown">
@@ -72,7 +76,7 @@
 							</div>
 						</div>
 					</li>
-	        		<li><a href="#">후기 게시판</a> </li>
+	        		<li><a href="../review/reviews_list.jsp">후기 게시판</a> </li>
 				</ul> 
 			</nav>
 		</header>

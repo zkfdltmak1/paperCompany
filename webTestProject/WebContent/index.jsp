@@ -67,7 +67,6 @@
 	<script type="text/javascript" src="./style/js/indexModal/indexModal.js"></script>
 	<link rel="stylesheet" type="text/css" href="./style/css/indexModal/indexModal.css"/>
 	<link rel="stylesheet" type="text/css" href="./style/css/main/main.css"/>
-	<link rel="stylesheet" type="text/css" href="./style/css/main/mainTop.css"/>
 
 	<script type="text/javascript">
 
