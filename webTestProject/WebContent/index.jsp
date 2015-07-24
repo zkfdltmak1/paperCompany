@@ -67,7 +67,7 @@
 	<script type="text/javascript" src="./style/js/indexModal/indexModal.js"></script>
 	<link rel="stylesheet" type="text/css" href="./style/css/indexModal/indexModal.css"/>
 	<link rel="stylesheet" type="text/css" href="./style/css/main/main.css"/>
-
+	<link rel="stylesheet" type="text/css" href="./style/css/main/mainTop.css"/>
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -96,7 +96,7 @@
 	<!-- 본문 영역 -->
 		
 	<!-- 푸터영역 -->
-	<%-- <jsp:include page="/paper/papercompany/mainBar/mainFooter.jsp"></jsp:include> --%>
+	<jsp:include page="./papercompany/mainBar/mainFooter.jsp"></jsp:include>
 	
 	<!-- 모달 부분 코드는 제일 아래로 -->
 	<!-- loginModal -->
