@@ -13,7 +13,9 @@
                maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
-<link rel="stylesheet" href="/webTestProject/style/css/main/mainHeader.css">
+<script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" href="/webTestProject/style/css/main/mainTop.css">
 <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 	
@@ -37,7 +39,7 @@
 	}
 	
 	
-	/* $(document).ready(function(){
+	$(document).ready(function(){
 	    $(".dropdown-menu>a").click(function(){
 	        var submenu = $(this).next("ul");
 	
@@ -69,14 +71,14 @@
 		});
 		
 		
-	}); */
+	}); 
 </script>
 <style type="text/css">
 	
 </style>
 </head>
 <body>
-	<%-- <div id="display_size">
+	<div id="display_size">
 		<header>
 			<%if(session_email != null){ %>
 			<div id="div_01">
@@ -131,8 +133,8 @@
 				</ul>
 			</nav>
 		</header>
-	</div> --%>
-	<header class="header-user-dropdown">
+	</div>
+	<!-- <header class="header-user-dropdown">
 	<div class="header-limiter">
 		<h1><a href="#">Paper<span>Company</span></a></h1>
 		<nav>
@@ -163,13 +165,13 @@
 					<li><a href="#"></a></li>
 				</ul>
 			</div>
-			<!-- <a href="#">Roles <span class="header-new-feature">new</span></a> -->
+			<a href="#">Roles <span class="header-new-feature">new</span></a>
 		</nav>
 		
 		<div class="header-user-menu">			
 			<a href="#" class="highlight logout-button">Logout</a>
 		</div>
-	</div>
+	</div> -->
 </header>
 </body>
 </html>

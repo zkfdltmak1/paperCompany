@@ -1,0 +1,170 @@
+.header-user-dropdown {
+	background-color:#ffffff;
+	box-shadow:0 0 7px 0 rgba(0, 0, 0, 0.15);
+	padding: 20px 40px;
+	height: 80px;
+	color: #000000;
+	box-sizing: border-box;
+}
+
+.header-user-dropdown{	
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.header-user-dropdown .header-limiter {
+	text-align: center;
+	margin: 0 auto;
+}
+
+/* Logo */
+
+.header-user-dropdown .header-limiter h1{
+	float: left;
+	font: normal 33px Cookie, Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	margin:0;
+}
+
+.header-user-dropdown .header-limiter h1 span {
+	color: #5383d3;
+}
+
+/* The header links */
+
+.header-user-dropdown .header-limiter a {
+	color: #000000;
+	text-decoration: none;
+}
+
+.header-user-dropdown .header-limiter nav{
+	font:16px Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	float: left;
+	margin: 0 0 0 170px;
+	padding: 0;
+}
+
+.header-user-dropdown .header-limiter nav a{
+	font-size: 18px;
+	display: inline-block;
+	padding: 0 12px;
+	opacity: 0.9;
+	position: relative;
+	text-decoration:none;
+	line-height: 1;
+}
+
+.header-user-dropdown .header-limiter nav a:hover {
+	opacity: 1;
+}
+
+/* The "new" badge */
+
+.header-user-dropdown .header-limiter nav a span {
+	position: absolute;
+	top: -12px;
+	border-radius: 2px;
+	background-color: #2A6A92;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	height: 13px;
+	font-size: 11px;
+	right: -15px;
+	padding: 1px 4px 0;
+}
+
+/* The user menu */
+
+.header-user-dropdown .header-limiter .header-user-menu{
+	position: relative;
+	float: right;
+	background-color:#fff;
+	width:110px;
+	height:60px;
+	border-radius:3px;
+}
+
+.header-user-dropdown .header-limiter .header-user-menu:before{
+	content:'';
+	width:0;
+	height:0;
+	top: 18px;
+	left: 15px;
+	position:absolute;
+	border:5px solid transparent;
+	border-top-color:#fff;
+}
+
+.header-user-dropdown .header-limiter .header-user-menu ul{
+	display: none;
+	font:bold 13px Arial, Helvetica, sans-serif;
+	background-color: inherit;
+	list-style: none;
+	position: absolute;
+	text-align: center;
+	width: 180px;
+	top: 35px;
+	right: 0;
+	padding: 15px;
+	border-radius: 3px;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+}
+
+.header-user-dropdown .header-user-menu:active ul,
+.header-user-dropdown .header-user-menu:hover ul,
+.header-user-dropdown .header-user-menu.show ul{
+	display:block;
+}
+
+.header-user-dropdown .header-user-menu ul li{
+	padding:8px;
+}
+
+.header-user-dropdown .header-user-menu ul li a:hover{
+	opacity:0.9;
+}
+
+.header-user-dropdown .header-user-menu ul li a.highlight{
+	color:#e9ac09;
+}
+
+/* logout-button */
+.header-user-dropdown .header-user-menu a.logout-button {
+	font-size: 13px;
+	font-weight: bold;
+	float: right;
+	border-radius: 3px;
+	background-color: rgba(58, 60, 62, 0);
+	height: 40px;
+	padding: 0 20px;
+	border: 1px solid #5E6367;
+	line-height: 40px;
+	box-sizing: border-box;
+}
+
+/* 
+@media all and (max-width: 800px) {
+
+	.header-user-dropdown .header-limiter h1 {
+		font-size: 24px;
+	}
+
+	.header-user-dropdown .header-limiter nav a {
+		padding: 0 5px;
+	}
+
+	.header-user-dropdown .header-limiter nav {
+		margin-left: 20px;
+	}
+
+}
+
+@media all and (max-width: 600px) {
+
+	.header-user-dropdown .header-limiter nav {
+		display: none;
+	}
+
+} 
+*/
