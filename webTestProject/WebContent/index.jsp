@@ -81,7 +81,7 @@
 
 	</script> 
 </head>
-<body> 
+<body>
 	<!-- 헤더 영역 -->
 	<jsp:include page="./papercompany/mainBar/mainTop.jsp"></jsp:include>
 	<!-- 헤더 영역 -->

@@ -41,7 +41,7 @@
 	font:16px Arial, Helvetica, sans-serif;
 	line-height: 40px;
 	float: left;
-	margin: 0 0 0 170px;
+	margin: 0 0 0 120px;
 	padding: 0;
 }
 
@@ -130,7 +130,7 @@
 }
 
 /* logout-button */
-.header-user-dropdown .header-user-menu a.logout-button {
+.header-user-dropdown div a.logout-button {
 	font-size: 13px;
 	font-weight: bold;
 	float: right;

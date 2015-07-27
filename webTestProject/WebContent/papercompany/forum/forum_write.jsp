@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<% String session_email = (String)session.getAttribute("s_member_email");
+
+%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,7 +12,7 @@
 					maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../style/css/board/board.css" />
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
 <script type="text/javascript" src="../../style/js/jquery/jquery-1.11.3.min.js">
 </script>
 
@@ -38,15 +42,16 @@
 </script>
 </head>
 <body>
+	<%if(session_email==null){
+	%>
+		<h1>정상적인 접근이 아닙니다.</h1>
+	<%}else{
+	%>
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
-	<form name="w_forum" id="w_forum_id">
+	<form name="w_forum" id="w_forum_id" >
 		<input type="hidden" name="command" value="forum_write_command" >
-		<div class="container">
+		<div class="con">
 			<table id="table_board" class="list">
-				<colgroup>
-					<col width="150">
-					<col width="60%">
-				</colgroup>
 				<thead>
 					<tr>
 						<th colspan="2">
@@ -70,9 +75,8 @@
 				</tbody>
 				<tfoot>
 					<tr>
-						<td id="write" >
-							<a href="#" onclick="forum_write()">글쓰기</a>
-
+						<td id="write" >						
+							<a href="#" onclick="forum_write()" >글쓰기</a>	
 						</td>
 						<td> 
 							<a href="#" onclick="history.back(); return false;">목록으로</a> 
@@ -83,5 +87,6 @@
 		</div>
 	</form>
 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
+	<%} %>
 </body>
 </html>

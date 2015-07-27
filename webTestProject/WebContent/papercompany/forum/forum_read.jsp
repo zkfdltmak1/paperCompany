@@ -4,17 +4,17 @@
 <%@ page import="com.board.vo.ForumVO" %>
 <jsp:useBean id="fDao" class="com.board.dao.ForumDAO" ></jsp:useBean>
 <jsp:useBean id="fvo" class="com.board.vo.ForumVO" ></jsp:useBean>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 
-<%! 
-	int forum_number =0;
-%>
+<c:set var="forum_number" value="${forum_number}" scope="session"></c:set>
 
 <%
-	forum_number = Integer.parseInt(request.getParameter("forum_number"));
+	int forum_number = Integer.parseInt(request.getParameter("forum_number"));
 	
 	fvo = fDao.titleSearch(forum_number);
 	
 	session.setAttribute("forum_number", forum_number);
+	String session_email = (String)session.getAttribute("s_member_email");
 	
 %>
 <!DOCTYPE html>
@@ -48,10 +48,16 @@
 </script>
 </head>
 <body>
+	<%if(session_email==null){
+	%>
+		<h1>정상적인 접근이 아닙니다</h1>
+	<%
+	}else{
+		%>
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<form name="r_forum" id="r_forum_id">			
 	<input type="hidden" name="command" value="forum_delete_command"/>
-	<div class="container">
+	<div class="con">
 		<table id="table_board" class="list">
 			<colgroup>
 				<col width="150">
@@ -65,7 +71,7 @@
 			</thead>
 			<tbody>
 
-				<tr id="forum_read_tbody">
+				<tr>
 					<td>content</td>
 					<td><%= fvo.getForum_content() %></td>
 				</tr>
@@ -76,7 +82,14 @@
 						<a href="#" onclick="history.back(); return false;">이전</a>
 					</td>
 					<td>
-						<a href="#" onclick="forum_delete()" id="forum_delete_id">삭제</a>
+						<%
+		                  String masterId = "jslee80130@gmail.com";
+		                  if(masterId.equals(session_email)){ %>
+							<a href="forum_read_modify.jsp?forum_number=<%=forum_number%>">수정</a>&nbsp;&nbsp;
+							<a href="#" onclick="forum_delete()" id="forum_delete_id">삭제</a>
+		                  <%
+		                     }
+		                  %>
 					</td>						
 				</tr>
 			</tfoot>
@@ -84,5 +97,6 @@
 	</div>
 	</form>
 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
+	<%} %>
 </body>
 </html>

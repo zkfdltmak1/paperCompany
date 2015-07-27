@@ -1,21 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.board.vo.ForumVO" %>
 <jsp:useBean id="fDao" class="com.board.dao.ForumDAO" ></jsp:useBean>
 <jsp:useBean id="fvo" class="com.board.vo.ForumVO" ></jsp:useBean>
+
 <%
-	ArrayList<ForumVO> fList = (ArrayList<ForumVO>)request.getAttribute("fList");
+	 ArrayList<ForumVO> fList = (ArrayList<ForumVO>)session.getAttribute("fList"); 
 	
 	final int ROWSIZE =10;  // 한페이지에 보일 게시물 수
 	final int BLOCK = 5; // 아래에 보일 페이지 최대개수 1~5 / 6~10 / 11~15 식으로 5개로 고정
-	
-	int pg = 1; //기본 페이지값
+	int pg = 1; //기본 페이지값;
+
 	
 	if(request.getParameter("pg")!=null) { //받아온 pg값이 있을때, 다른페이지일때
 		pg = Integer.parseInt(request.getParameter("pg")); // pg값을 저장
 	}
-	
+
 	int start = (pg*ROWSIZE) - (ROWSIZE-1); // 해당페이지에서 시작번호(step2)
 	int end = (pg*ROWSIZE); // 해당페이지에서 끝번호(step2)
 	
@@ -31,9 +34,11 @@
  	 if(endPage > allPage) {
 		endPage = allPage;
 	} 
+     String session_email = (String)session.getAttribute("s_member_email");
  
 
-%> 
+%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -47,19 +52,16 @@
 </script>
 </head>
 <body>
-	<!-- Top  -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
-	<!-- section 시작 -->
+	<%if(session_email==null){
+	%>
+		<h1>정상적인 접근이 아닙니다</h1>
+	<%
+	}else{
+		%>
 	<form method="post" action ="/webTestProject/papercompany/forum/forum_write.jsp" id="forum_board_form_id">
-	<section class="container">
+	<div class="con">
 		<table id="table_board" class="list">
-			<colgroup>
-				<col width="150">
-				<col width="60%">
-
-				<!-- <col width="100">
-				<col width="150"> -->
-			</colgroup>
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -96,16 +98,11 @@
 				}
 			}	
 			%>
+			
 			</tbody>
 			<tfoot>
 				<tr>
-					<!-- <td colspan="2" id="pageno">
-						<a href="#">이전</a>
-						<a href="#">1</a>
-						<a href="#">다음</a>
-					</td> 
-					align="center" 
-					-->
+					
 					
 					<td colspan="2" id="pageno">
 						<%
@@ -124,7 +121,9 @@
 									[<%=i %>]
 						<%
 								}else{
+									
 						%>
+									
 									[<a href="/webTestProject/papercompany/forum/forum_board.jsp?pg=<%=i %>"><%=i %></a>]
 						<%
 								}
@@ -148,7 +147,13 @@
 						
 						if (masterID.equals(ID)){ 
 						%>  --%>
-						<a href="/webTestProject/papercompany/forum/forum_write.jsp">글쓰기</a>
+						<%
+		                  String masterId = "jslee80130@gmail.com";
+		                  if(masterId.equals(session_email)){ %>
+		                  <a href="forum_write.jsp">글쓰기</a>
+		                  <%
+		                     }
+		                  %>
 						<%-- <% 
 						} 
 						%>  --%>
@@ -156,11 +161,9 @@
 				</tr>
 			</tfoot>
 		</table>
-	</section>
+	</div>
 	</form>
-	<!-- section끝 -->
-	<!-- footer -->
-	
+	<%} %>
  	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 </body>
 </html>

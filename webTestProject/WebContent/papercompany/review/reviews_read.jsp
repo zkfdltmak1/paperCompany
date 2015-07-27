@@ -84,8 +84,8 @@
 					</tr>
 				</form>
 			</tbody>
-			<tfoot>
-				<td colspan="3" id="reviews_read_tfoot">
+			<tfoot class="r_read">
+				<td colspan="3">
 					<form name="f_readUpdate">
 							<a href="javascript:fnReadUpdate()">수정</a> | 
 							<input type="hidden" name="command" value="readUpdate">
