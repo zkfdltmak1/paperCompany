@@ -11,9 +11,9 @@
 	<script src="/javascriptProject/js/html5shiv.js"></script>
 	<![endif]--> 
 
-<!-- <link href="/paper/CSS/MainFooter.css" rel="stylesheet" type="text/css"> -->
-<style type="text/css">
-footer{
+<link href="/webTestProject/style/css/main/mainFooter.css" rel="stylesheet" type="text/css">
+<!-- <style type="text/css">
+#mainFooter_id{
 	width:  80%;
 	height : 80px;
 	margin: 0 auto;
@@ -22,11 +22,13 @@ footer{
 	text-align: center;
 	padding-top: 20px;
 }
-</style>
+</style> -->
 </head>
 <body>
-	<footer>
-		<p><h2>Copyroght 2015 paperCompany</h2></p>
-	</footer>
+	<table id="mainFooter_id">
+		<tr>
+			<td><h2>Copyroght 2015 paperCompany</h2></td>
+		</tr>
+	</table>
 </body>
 </html>

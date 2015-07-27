@@ -61,13 +61,12 @@
 	               maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 	<title>Index Page</title>
-	<script type="text/javascript" src="./style/js/jquery/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="./style/js/bootstrap/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="./style/css/bootstrap/bootstrap.min.css" />
-	<script type="text/javascript" src="./style/js/indexModal/indexModal.js"></script>
-	<link rel="stylesheet" type="text/css" href="./style/css/indexModal/indexModal.css"/>
-	<link rel="stylesheet" type="text/css" href="./style/css/main/main.css"/>
-	<link rel="stylesheet" type="text/css" href="./style/css/main/mainTop.css"/>
+	<script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
+	<script type="text/javascript" src="/webTestProject/style/js/indexModal/indexModal.js"></script>
+	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/indexModal/indexModal.css"/>
+	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/main/main.css"/>
 	<script type="text/javascript">
 
 	$(document).ready(function(){
@@ -80,7 +79,7 @@
 		}
 	});
 
-	</script>
+	</script> 
 </head>
 <body> 
 	<!-- 헤더 영역 -->
@@ -88,10 +87,14 @@
 	<!-- 헤더 영역 -->
 
 	<!-- 본문 영역 -->
-	<section id="s1">
-		<article><a href="#" ><img id="img1" src="./style/image/bus4.jpg" ></a></article>
-		<article><a href="#" ><img id="img2" src="./style/image/airplane2.jpg" ></a></article>
-		<article><a href="#" ><img id="img3" src="./style/image/train4.jpg" ></a></article>	
+	
+	
+	<section>
+		<div id="index_section">
+		<article><a href="#" ><img id="img1" src="/webTestProject/style/image/bus4.jpg" ></a></article>
+		<article><a href="#" ><img id="img2" src="/webTestProject/style/image/airplane2.jpg" ></a></article>
+		<article><a href="#" ><img id="img3" src="/webTestProject/style/image/train4.jpg" ></a></article>	
+		</div>
 	</section>
 	<!-- 본문 영역 -->
 		
@@ -148,13 +151,13 @@
 						<div class="form-group">
 							<input class="form-control" placeholder="비밀번호 입력" name="pwd2" id="pwd2" type="password" required="required" />
 						</div>
-						<p>
+						<p class="form-group">
 							<input class="form-control" placeholder="닉네임 입력" name="nickname" id="nickname" type="text" required="required" />
 						</p>
-						<p>
+						<p class="form-group">
 							<input class="form-control" placeholder="이름 입력" name="name" id="name" type="text" required="required" />
 						</p>
-						<p>
+						<p class="form-group">
 							<input class="form-control" placeholder="전화 번호 입력(-빼고 입력)" name="phone" id="phone" type="text" required="required" />
 						</p>
 						<button type="submit" class="btn btn-sm btn-success">회원가입</button>

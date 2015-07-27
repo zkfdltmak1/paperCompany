@@ -1,6 +1,6 @@
 @CHARSET "UTF-8";
 
-header{
+/* header{
 	width: 80%;
 	height: 100px;
 	margin-left: auto;
@@ -13,16 +13,16 @@ footer{
 	margin-right: auto;
 	height: 100px;
 	background-color: #333;
-}
+} */
 
-section {
-	width: 80%;
+#index_section {
+	width: 1000px;
 	margin: 0 auto;
-	background: url(./style/image/main7.jpg) left center no-repeat;
+	background-color : #000;
 }
 
-section > article> a > img{
-	width: 70%;
+#index_section > article> a > img{
+	width: 700px;
 	height: 200px;
 	margin-left: 15%;
 	margin-right: 15%;
@@ -30,7 +30,7 @@ section > article> a > img{
 	border-radius: 30px;
 	
 }
-section > article> a > img:hover{
+#index_section > article> a > img:hover{
 	opacity:1;
 }
 

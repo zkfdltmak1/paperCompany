@@ -6,6 +6,25 @@
 	transition: opacity .3s linear, top .3s ease-out;
 }
 
+.modal-content {
+	height: 100% !important;
+	overflow:visible;
+	text-align: center;
+}
+fieldset{
+	margin: 0 auto;
+	width: 90%;
+}
+.loginForm{
+	padding-top: 70px;
+}
+.joinForm{
+	padding-top: 30px;
+}
+.form-group{
+	margin-left: 22px;
+}
+
 @media screen 
 and (min-device-width: 768px)
 and (max-device-width: 1024px) {
@@ -20,28 +39,11 @@ and (max-device-width: 1024px) {
 		height: 500px !important;
 		padding-top: 50px;
 	}
-	
-	.modal-content {
-		height: 100% !important;
-		overflow:visible;
-		text-align: center;
-	}
-	fieldset{
-		margin: 0 auto;
-		width: 90%;
-	}
-	.loginForm{
-		padding-top: 70px;
-	}
-	.joinForm{
-		padding-top: 30px;
-	}
-		
 }
 
 @media screen 
 and (min-device-width: 1280px)
-and (max-device-width: 1680px) {
+and (max-device-width: 1920px) {
 	.modal{
 		margin-top: 180px;
 	}
@@ -53,52 +55,20 @@ and (max-device-width: 1680px) {
 		height: 500px !important;
 		padding-top: 50px;
 	}
-	
-	.modal-content {
-		height: 100% !important;
-		overflow:visible;
-		text-align: center;
-	}
-	fieldset{
-		margin: 0 auto;
-		width: 90%;
-	}
-	.loginForm{
-		padding-top: 70px;
-	}
-	.joinForm{
-		padding-top: 30px;
-	}
 }
 
 @media screen 
 and (min-device-width: 1920px)
 and (max-device-width: 2048px) {
 	.modal{
-		margin-top: 120px;
+		margin-top: 180px;
 	}
 	#modal-dialog1 {
-		height: 380px !important;
+		height: 400px !important;
 		padding-top: 60px;
 	}
 	#modal-dialog2 {
 		height: 500px !important;
 		padding-top: 60px;
 	}
-	
-	.modal-content {
-		height: 100% !important;
-		overflow:visible;
-		text-align: center;
-	}
-	fieldset{
-		margin: 0 auto;
-		width: 90%;
-	}
-	.loginForm{
-		padding-top: 50px;
-	}
-	.joinForm{
-		padding-top: 30px;
-	}	
 }

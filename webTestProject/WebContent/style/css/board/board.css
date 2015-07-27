@@ -7,9 +7,10 @@ html {
 	margin: 0px;
 }
 
-body {
+.container {
 	margin: 0px;
 	padding-top: 15%;
+	padding-bottom: 15%;
 	font-family: 'Hanna';
 	/*font-family: '맑은 고딕', 'Helvetica', 'Arial', 'lucida grande','tahoma','verdana','arial','sans-serif';*/
 	color: white;
@@ -39,12 +40,38 @@ input {
 	text-align: center;	
 }
 
+th{
+	text-align: center;
+}
+
+tr{
+	text-align: center;
+}
+
+tbody tr#reviews_read_tbody, 
+tbody tr#forum_read_tbody{
+	height: 300px;
+}
+
+/* 댓글 목록 */
+tbody #reply_list{
+	border-top: 1px solid #565; 
+}
+
+tbody#reply_list #reply_list_id{
+	width: 110px !important;
+}
+
+tbody#reply_list #reply_list_content{
+	width: 800px !important;
+}
+
 @media screen 
 and (min-device-width: 768px)
 and (max-device-width: 1024px) {
 	.container {
 		width: 68%;
-		margin: 30px auto;
+		margin: 0 auto;
 	}
 	
 	#table_board {
@@ -57,12 +84,12 @@ and (max-device-width: 1024px) {
 	}
 }
 
-@media screen 
+ @media screen 
 and (min-device-width: 1280px)
 and (max-device-width: 1680px) {
-		.container {
+	.container {
 		width: 68%;
-		margin: 30px auto;
+		margin: 0 auto;
 	}
 	
 	#table_board {
@@ -73,8 +100,8 @@ and (max-device-width: 1680px) {
 		padding: 10px;
 		padding-left: 15px;
 	}
-}
-
+} 
+ 
 /* 레이아웃 */
 /******************************************************/
 
@@ -91,14 +118,18 @@ and (max-device-width: 1680px) {
 }
 
 #table_board {
-	width: 100%;
+	font-size: 21px;
+	margin:0 auto;
+	width: 80%;
 	border-radius: 15px;
 	border-spacing: 0px;
 	overflow: hidden;
 	color: #8e8071;
 }
 
+
 #table_board th {
+	text-align: center;
 	background-color: #b1a599;
 	color: white;
 	height: 25px;
@@ -133,6 +164,8 @@ and (max-device-width: 1680px) {
 }
 
 #table_board tfoot a {
+	display: inline-block;
+	float: left;
 	color: black;
 }
 

@@ -18,39 +18,35 @@ public class ReviewDao {
 	private StringBuffer sql;
 	private DBConnectionMgr dbMgr = DBConnectionMgr.getInstance();
 	
-	// 후기게시판 글 읽기 가져오기
-	/*public List<ReviewVO> getReviewforum(int reviews_number){*/ 
-	public ReviewVO getReviewforum(int reviews_number){
-			//얜 여러개
-			/*List<ReviewVO> VoList = new ArrayList<ReviewVO>();*/
-			//얜 하나
-			ReviewVO reviewVO = new ReviewVO();
-			dbMgr = DBConnectionMgr.getInstance();
-			StringBuilder sql = new StringBuilder();
-			sql.append("select REVIEWS_TITLE, REVIEWS_CONTENT, ");
-			sql.append("M_EMAIL from REVIEWS_FORUM where ");
-			sql.append("REVIEWS_NUMBER = ?");
-			
+	// 후기게시판 글 읽기 가져오기 
+	public ReviewVO getReviewRead(int reviews_number){
+		ReviewVO reviewVO = new ReviewVO();
+		StringBuilder sql = new StringBuilder();
+		sql.append("select REVIEWS_NUMBER, REVIEWS_TITLE, ");
+		sql.append("REVIEWS_PW, REVIEWS_CONTENT, M_EMAIL ");
+		sql.append("from REVIEWS_FORUM ");
+		sql.append("where REVIEWS_NUMBER = ?");
+		
 		try{
+			con = dbMgr.getConnection();
 			pstmt = con.prepareStatement(sql.toString());
 			pstmt.setInt(1, reviews_number);
 			rs = pstmt.executeQuery();
-			con = dbMgr.getConnection();
 			
 		while(rs.next()){
-			reviewVO.setReviews_number(rs.getInt("reviews_number")); 		
-			reviewVO.setReviews_content(rs.getString("reviews_content")); 	
+			reviewVO.setReviews_number(rs.getInt("reviews_number"));
 			reviewVO.setReviews_title(rs.getString("reviews_title")); 		
-			reviewVO.setReviews_pw(rs.getString("reviews_pw")); 				
+			reviewVO.setReviews_content(rs.getString("reviews_content"));
+			reviewVO.setReviews_pw(rs.getString("reviews_pw"));
 			reviewVO.setM_email(rs.getString("m_email")); 	
 		}
-		} catch (SQLException se) {
-			se.printStackTrace();
-		} catch (Exception e){
-			e.printStackTrace();
-		} finally{
-			dbMgr.freeConnection(con, pstmt, rs);
-		}
+	} catch (SQLException se) {
+		se.printStackTrace();
+	} catch (Exception e){
+		e.printStackTrace();
+	} finally{
+		dbMgr.freeConnection(con, pstmt, rs);
+	}
 		return reviewVO;
 	}
 	
@@ -98,7 +94,6 @@ public class ReviewDao {
 				rvo.setM_email(rs.getString("m_email"));
 				reviewList.add(rvo);
 			}
-			System.out.println("reviewList size : " + reviewList.size());
 		}catch(SQLException se){
 			System.out.println("se = [ "+se+" ]");
 		}catch (Exception e){
@@ -107,6 +102,46 @@ public class ReviewDao {
 			dbMgr.freeConnection(con, pstmt, rs);
 		}
 		return reviewList;
+	}
+	
+	// 후기 게시판 수정
+	public int reviewUpdate(int reviews_number, String reviews_content){
+		int result = 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("update reviews_forum set reviews_content = ? where reviews_no = ?");
+		
+		try{
+			con = dbMgr.getConnection();
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, reviews_content);
+			pstmt.setInt(2, reviews_number);
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// 후기 게시판 삭제
+	public int reviewDelete(int reviews_number, String reviews_pw){
+		int result = 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete from reviews_forum where reviews_no = ? and reviews_pw = ?");
+		
+		try{
+			con = dbMgr.getConnection();
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, reviews_number);
+			pstmt.setString(2, reviews_pw);
+			result = pstmt.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 }

@@ -13,7 +13,7 @@
 	forum_number = Integer.parseInt(request.getParameter("forum_number"));
 	
 	fvo = fDao.titleSearch(forum_number);
-	 
+	
 	session.setAttribute("forum_number", forum_number);
 	
 %>
@@ -24,12 +24,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, 
 					maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<link rel="stylesheet" type="text/css" href="../../style/css/board/board.css" />
-<script type="text/javascript" src="../../style/js/jquery/jquery-1.11.3.min.js">
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
+<script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js">
 </script>
 
 <!-- jquery로 처리 -->
-<script type="text/javascript" src="../../style/js/forum/forum_read.js">
+<script type="text/javascript" src="/webTestProject/style/js/forum/forum_read.js">
 </script>
 
 <!-- 자바 스크립트로 처리 -->
@@ -48,13 +48,14 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<form name="r_forum" id="r_forum_id">			
 	<input type="hidden" name="command" value="forum_delete_command"/>
 	<div class="container">
 		<table id="table_board" class="list">
 			<colgroup>
-				<col>
-				<col>
+				<col width="150">
+				<col width="60%">
 			</colgroup>
 			<thead>
 				<tr>
@@ -64,7 +65,7 @@
 			</thead>
 			<tbody>
 
-				<tr>
+				<tr id="forum_read_tbody">
 					<td>content</td>
 					<td><%= fvo.getForum_content() %></td>
 				</tr>
@@ -82,5 +83,6 @@
 		</table>
 	</div>
 	</form>
+	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 </body>
 </html>

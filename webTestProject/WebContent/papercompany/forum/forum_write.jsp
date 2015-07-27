@@ -38,13 +38,14 @@
 </script>
 </head>
 <body>
+	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<form name="w_forum" id="w_forum_id">
 		<input type="hidden" name="command" value="forum_write_command" >
 		<div class="container">
 			<table id="table_board" class="list">
 				<colgroup>
-					<col width="20%">
-					<col width="80%">
+					<col width="150">
+					<col width="60%">
 				</colgroup>
 				<thead>
 					<tr>
@@ -57,13 +58,13 @@
 					<tr>
 						<td>제목</td>
 						<td>
-							<input type="text" name="forum_title" size="78" id="forum_title_id"/>
+							<input type="text" name="forum_title" size="40" id="forum_title_id"/>
 						</td>
 					</tr>
 					<tr>
 						<td>내용</td>
 						<td>
-							<textarea rows="8" cols="70" name="forum_content" id="forum_content_id" ></textarea>
+							<textarea rows="8" cols="40" name="forum_content" id="forum_content_id" ></textarea>
 						</td>
 					</tr>
 				</tbody>
@@ -81,5 +82,6 @@
 			</table>
 		</div>
 	</form>
+	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 </body>
 </html>

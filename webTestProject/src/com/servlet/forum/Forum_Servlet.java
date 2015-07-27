@@ -1,7 +1,9 @@
 package com.servlet.forum;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.board.dao.ForumDAO;
+import com.board.vo.ForumVO;
 
 public class Forum_Servlet extends HttpServlet {
 	public void  doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
@@ -41,7 +44,7 @@ public class Forum_Servlet extends HttpServlet {
 		}
 		
 		
-		if("forum_write_command".equals(command)){
+		else if("forum_write_command".equals(command)){
 			
 			fDao = new ForumDAO();
 			
@@ -52,6 +55,18 @@ public class Forum_Servlet extends HttpServlet {
 			if(check){
 				res.sendRedirect("../papercompany/forum/forum_write_success.jsp");
 			}
+			
+		}
+		
+		else if("mainTop_command".equals(command)){
+			fDao = new ForumDAO();
+			ArrayList<ForumVO> fList = new ArrayList<ForumVO>();
+			fList = fDao.forumSearch();
+			
+			System.out.println(fList);
+			req.setAttribute("fList", fList);
+			RequestDispatcher view = req.getRequestDispatcher("../papercompany/forum/forum_board.jsp");
+			view.forward(req, res);
 			
 		}
 		

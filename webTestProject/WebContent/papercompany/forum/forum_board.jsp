@@ -4,13 +4,9 @@
 <%@ page import="com.board.vo.ForumVO" %>
 <jsp:useBean id="fDao" class="com.board.dao.ForumDAO" ></jsp:useBean>
 <jsp:useBean id="fvo" class="com.board.vo.ForumVO" ></jsp:useBean>
-<%!
-	ArrayList<ForumVO> fList = new ArrayList<ForumVO>();
-%>
 <%
-	fList = fDao.forumSearch();
-
-
+	ArrayList<ForumVO> fList = (ArrayList<ForumVO>)request.getAttribute("fList");
+	
 	final int ROWSIZE =10;  // 한페이지에 보일 게시물 수
 	final int BLOCK = 5; // 아래에 보일 페이지 최대개수 1~5 / 6~10 / 11~15 식으로 5개로 고정
 	
@@ -46,15 +42,15 @@
 					maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../style/css/board/board.css" />
-<script type="text/javascript" src="../../style/js/jquery/jquery-1.11.3.min.js">
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
+<script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js">
 </script>
 </head>
 <body>
 	<!-- Top  -->
-	<%-- <jsp:include page=""></jsp:include> --%>
+	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<!-- section 시작 -->
-	<form method="post" action ="./forum_write.jsp">
+	<form method="post" action ="/webTestProject/papercompany/forum/forum_write.jsp" id="forum_board_form_id">
 	<section class="container">
 		<table id="table_board" class="list">
 			<colgroup>
@@ -80,7 +76,7 @@
 			%>
 				<tr>
 					<td><%= fList.get(i).getForum_no() %></td>
-					<td><a href="forum_read.jsp?forum_number=<%= fList.get(i).getForum_no() %>"><%= fList.get(i).getForum_subject() %></a></td>
+					<td><a href="/webTestProject/papercompany/forum/forum_read.jsp?forum_number=<%= fList.get(i).getForum_no() %>"><%= fList.get(i).getForum_subject() %></a></td>
 					<td>운영자</td>
 				</tr>
 			<%
@@ -92,7 +88,7 @@
 
 				<tr>
 					<td><%= fList.get(i).getForum_no() %></td>
-					<td><a href="forum_read.jsp?forum_number=<%= fList.get(i).getForum_no() %>"><%= fList.get(i).getForum_subject() %></a></td>
+					<td><a href="/webTestProject/papercompany/forum/forum_read.jsp?forum_number=<%= fList.get(i).getForum_no() %>"><%= fList.get(i).getForum_subject() %></a></td>
 					<td>운영자</td>
 				</tr>
 				
@@ -115,8 +111,8 @@
 						<%
 							if(pg>BLOCK) {
 						%>
-							[<a href="forum_board.jsp?pg=1">◀◀</a>]
-							[<a href="forum_board.jsp?pg=<%=startPage-1%>">◀</a>]
+							[<a href="/webTestProject/papercompany/forum/forum_board.jsp?pg=1">◀◀</a>]
+							[<a href="/webTestProject/papercompany/forum/forum_board.jsp?pg=<%=startPage-1%>">◀</a>]
 						<%
 							}
 						%>
@@ -129,7 +125,7 @@
 						<%
 								}else{
 						%>
-									[<a href="forum_board.jsp?pg=<%=i %>"><%=i %></a>]
+									[<a href="/webTestProject/papercompany/forum/forum_board.jsp?pg=<%=i %>"><%=i %></a>]
 						<%
 								}
 							}
@@ -138,8 +134,8 @@
 						<%
 							if(endPage<allPage){
 						%>
-							[<a href="forum_board.jsp?pg=<%=endPage+1%>">▶</a>]
-							[<a href="forum_board.jsp?pg=<%=allPage%>">▶▶</a>]
+							[<a href="/webTestProject/papercompany/forum/forum_board.jsp?pg=<%=endPage+1%>">▶</a>]
+							[<a href="/webTestProject/papercompany/forum/forum_board.jsp?pg=<%=allPage%>">▶▶</a>]
 						<%
 							}
 						%>
@@ -152,7 +148,7 @@
 						
 						if (masterID.equals(ID)){ 
 						%>  --%>
-						<a href="forum_write.jsp">글쓰기</a>
+						<a href="/webTestProject/papercompany/forum/forum_write.jsp">글쓰기</a>
 						<%-- <% 
 						} 
 						%>  --%>
@@ -164,6 +160,7 @@
 	</form>
 	<!-- section끝 -->
 	<!-- footer -->
-	<%-- <jsp:include page=""></jsp:include> --%>
+	
+ 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 </body>
 </html>
