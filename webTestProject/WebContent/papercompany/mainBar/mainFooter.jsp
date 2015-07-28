@@ -12,23 +12,15 @@
 	<![endif]--> 
 
 <link href="/webTestProject/style/css/main/mainFooter.css" rel="stylesheet" type="text/css">
-<!-- <style type="text/css">
-#mainFooter_id{
-	width:  80%;
-	height : 80px;
-	margin: 0 auto;
-	background-color: #5A5A69;
-	color: white;
-	text-align: center;
-	padding-top: 20px;
-}
-</style> -->
+<link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<table id="mainFooter_id">
-		<tr>
-			<td><h2>Copyroght 2015 paperCompany</h2></td>
-		</tr>
-	</table>
+	<footer class="footer-user">
+		<div class="footer-limiter">
+			<h1>
+				COPYRIGHT 2015 <span>Paper Company</span>
+			</h1>
+		</div>
+	</footer>
 </body>
 </html>

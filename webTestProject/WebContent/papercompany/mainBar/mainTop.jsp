@@ -34,9 +34,6 @@
 		
 	}
 </script>
-<style type="text/css">
-	
-</style>
 </head>
 <body>
 	<header class="header-user-dropdown">
@@ -86,7 +83,7 @@
 				<%if(session_email != null){%>
 					<form name="logout">
 						<input type="hidden" name="session_logout" value="<%=session_email%>">
-						<a class="highlight logout-button" href="/webTestProject/index.jsp" id="b_logout" onclick="LogOut(); return false;">Logout</a>
+						<a class="logout-button" href="/webTestProject/index.jsp" id="b_logout" onclick="LogOut(); return false;">Logout</a>
 					</form>
 				<%}%>
 			</div>

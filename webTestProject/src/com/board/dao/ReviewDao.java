@@ -105,22 +105,25 @@ public class ReviewDao {
 	}
 	
 	// 후기 게시판 수정
-	public int reviewUpdate(int reviews_number, String reviews_content){
+	public int reviewUpdate(ReviewVO rvo){
 		int result = 0;
 		StringBuffer sql = new StringBuffer();
-		sql.append("update reviews_forum set reviews_content = ? where reviews_no = ?");
+		sql.append("update reviews_forum set ");
+		sql.append("reviews_title = ?, reviews_content = ?, ");
+		sql.append("reviews_pw = ? where reviews_number = ?");
 		
 		try{
 			con = dbMgr.getConnection();
 			pstmt = con.prepareStatement(sql.toString());
-			pstmt.setString(1, reviews_content);
-			pstmt.setInt(2, reviews_number);
+			pstmt.setString(1, rvo.getReviews_title());
+			pstmt.setString(2, rvo.getReviews_content());
+			pstmt.setString(3, rvo.getReviews_pw());
+			pstmt.setInt(4, rvo.getReviews_number());
 			result = pstmt.executeUpdate();
 		}
 		catch(SQLException e){
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 	
@@ -128,7 +131,7 @@ public class ReviewDao {
 	public int reviewDelete(int reviews_number, String reviews_pw){
 		int result = 0;
 		StringBuffer sql = new StringBuffer();
-		sql.append("delete from reviews_forum where reviews_no = ? and reviews_pw = ?");
+		sql.append("delete from reviews_forum where reviews_number = ? and reviews_pw = ?");
 		
 		try{
 			con = dbMgr.getConnection();

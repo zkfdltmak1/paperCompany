@@ -13,7 +13,7 @@
 }
 fieldset{
 	margin: 0 auto;
-	width: 90%;
+	width: 260px;
 }
 .loginForm{
 	padding-top: 70px;
@@ -21,9 +21,9 @@ fieldset{
 .joinForm{
 	padding-top: 30px;
 }
-.form-group{
+/* .form-group{
 	margin-left: 22px;
-}
+} */
 
 @media screen 
 and (min-device-width: 768px)

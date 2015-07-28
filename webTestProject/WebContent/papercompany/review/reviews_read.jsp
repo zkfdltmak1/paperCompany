@@ -16,16 +16,31 @@
 <script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
 <script type="text/javascript">
-	function fnReadUpdate(){
-		document.f_readUpdate.method = "post";
+	function fnReadUpdateProc(){
+		/* document.f_readUpdate.method = "post";
 		document.f_readUpdate.action = "/webTestProject/review_board.review";
-		document.f_readUpdate.submit();
+		document.f_readUpdate.submit(); */
+		$("#f_readUpdate").attr({
+			method : "post",
+			action : "/webTestProject/review_board.review"
+		}).submit();
 	}
 	
 	function fnReadDelete(){
-		document.f_readDelete.method = "post";
+		/* document.f_readDelete.method = "post";
 		document.f_readDelete.action = "/webTestProject/review_board.review";
-		document.f_readDelete.submit();
+		document.f_readDelete.submit(); */
+		var result = $(confirm("정말 삭제하겠습니까?"));
+		alert(result);
+		if(result){
+			$("#f_readDelete").attr({
+				method : "post",
+				action : "/webTestProject/review_board.review"
+			}).submit();			
+		}
+		else{
+			location.href="/webTestProject/review_board.review?command=getReviewList";
+		}
 	}
 </script>
 </head>
@@ -33,7 +48,7 @@
 	<!-- Top  -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	
-	<div class="container">
+	<div class="con">
 		<table id="table_board" class="list">
 			<colgroup>
 				<col>
@@ -76,7 +91,7 @@
 				<form method="post" action="insertReply">
 					<tr class="reply">
 						<td colspan="2">
-								<input type="text" name="reviews_reply" id="reviews_reply" size="40">
+								<input type="text" name="reviews_reply" id="reviews_reply" size="90">
 						</td>
 						<td>
 							<input type="submit" value="댓글 작성">
@@ -86,17 +101,20 @@
 			</tbody>
 			<tfoot class="r_read">
 				<td colspan="3">
-					<form name="f_readUpdate">
-							<a href="javascript:fnReadUpdate()">수정</a> | 
-							<input type="hidden" name="command" value="readUpdate">
-							<input type="hidden" name="reviews_number" value="<%= rvo.getReviews_number() %>">
-							<input type="hidden" name="reviews_content" value="<%= rvo.getReviews_content() %>">
+					<form name="f_readUpdate" id="f_readUpdate">
+							<a href="javascript:fnReadUpdateProc()">수정</a> | 
+							<input type="hidden" name="command" value="readUpadateProc">
+							<input type="hidden" name="reviews_number" value="<%=rvo.getReviews_number()%>">
+							<input type="hidden" name="reviews_title" value="<%=rvo.getReviews_title()%>">
+							<input type="hidden" name="reviews_content" value="<%=rvo.getReviews_content()%>">
+							<input type="hidden" name="reviews_pw" value="<%=rvo.getReviews_pw()%>">
 					</form>
-					<form name="f_readDelet">
+					<form name="f_readDelet" id="f_readDelete">
 							<a href="javascript:fnReadDelete()">삭제</a> | 
-							<input type="hidden" name="command" value="readDelete">
+							<input type="hidden" name="command" value="read_delete">
 							<input type="hidden" name="reviews_number" value="<%= rvo.getReviews_number() %>">
 							<input type="hidden" name="reviews_pw" value="<%= rvo.getReviews_pw() %>">
+							<input type="hidden" name="reviews_reply_size" value="<%= rpList.size() %>">
 					</form>
 					<a href="javascript:history.back()">목록으로</a>
 				</td>

@@ -17,25 +17,25 @@ public class Forum_Servlet extends HttpServlet {
 	public void  doService(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
 		
 		String command = (String)req.getParameter("command");
+		
 		ForumDAO fDao = null;
 		//req.setCharacterEncoding("UTF-8");
 		
+		HttpSession session = req.getSession();
 		
 		if("forum_delete_command".equals(command)){
 			
 			fDao = new ForumDAO();
-			HttpSession session = req.getSession();
 			
 			int forum_number = (int)session.getAttribute("forum_number");
 			
 			
-			System.out.println(forum_number);
 			boolean check= fDao.deleteForum(forum_number);
 			
 			
 			if(check){
 				session.removeAttribute("forum_number");
-				res.sendRedirect("../papercompany/forum/forum_delete_success.jsp");
+				res.sendRedirect("/webTestProject/papercompany/forum/forum_delete_success.jsp");
 			}
 			else{
 				session.removeAttribute("forum_number");
@@ -53,7 +53,7 @@ public class Forum_Servlet extends HttpServlet {
 			boolean check = fDao.writeForum(forum_title,forum_content);
 			
 			if(check){
-				res.sendRedirect("../papercompany/forum/forum_write_success.jsp");
+				res.sendRedirect("/webTestProject/papercompany/forum/forum_write_success.jsp");
 			}
 			
 		}
@@ -63,17 +63,11 @@ public class Forum_Servlet extends HttpServlet {
 			ArrayList<ForumVO> fList = new ArrayList<ForumVO>();
 			fList = fDao.forumSearch();
 			
-			System.out.println(fList);
-			req.setAttribute("fList", fList);
-			RequestDispatcher view = req.getRequestDispatcher("../papercompany/forum/forum_board.jsp");
-			view.forward(req, res);
-			
+			session.setAttribute("fList", fList);
+			res.sendRedirect("/webTestProject/papercompany/forum/forum_board.jsp");
 		}
 		
-		
 	}
-	
-	
 	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{

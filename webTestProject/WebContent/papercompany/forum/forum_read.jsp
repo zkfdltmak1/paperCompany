@@ -4,7 +4,7 @@
 <%@ page import="com.board.vo.ForumVO" %>
 <jsp:useBean id="fDao" class="com.board.dao.ForumDAO" ></jsp:useBean>
 <jsp:useBean id="fvo" class="com.board.vo.ForumVO" ></jsp:useBean>
-<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="forum_number" value="${forum_number}" scope="session"></c:set>
 

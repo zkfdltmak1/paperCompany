@@ -50,11 +50,11 @@
     <url-pattern>/papercompany/mainBar/LogOut</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>reviewWrite</servlet-name>
+    <servlet-name>review</servlet-name>
     <servlet-class>com.servlet.review.ReviewServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>reviewWrite</servlet-name>
+    <servlet-name>review</servlet-name>
     <url-pattern>/review_board.review</url-pattern>
   </servlet-mapping>
   <servlet>

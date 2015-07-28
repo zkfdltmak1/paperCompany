@@ -47,12 +47,14 @@ public class ReviewServlet extends HttpServlet{
 			String reviews_content = req.getParameter("reviews_content");
 			String reviews_pw = req.getParameter("reviews_pw");
 			
+			System.out.println("review reviews_content : " + reviews_content);
+			
 			rvo.setReviews_title(reviews_title);
 			rvo.setReviews_content(reviews_content);
 			rvo.setReviews_pw(reviews_pw);
 			rDao.insertReviewWrite(rvo);
 			
-			resp.sendRedirect("/webTestProject/review_board.review");
+			resp.sendRedirect("/webTestProject/review_board.review?command=getReviewList");
 		}
 		else if("getReviewList".equals(command)){
 			List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
@@ -76,32 +78,68 @@ public class ReviewServlet extends HttpServlet{
 					req.getRequestDispatcher("./papercompany/review/reviews_read.jsp");
 			view.forward(req, resp);
 		}
-		else if("readUpadate".equals(command)){
-			int reviews_number = Integer.parseInt(req.getParameter("reviews_number"));
+		else if("readUpadateProc".equals(command)){
+			String reviews_number = req.getParameter("reviews_number");
+			String reviews_title = req.getParameter("reviews_title");
 			String reviews_content = req.getParameter("reviews_content");
-			
-			int result = rDao.reviewUpdate(reviews_number, reviews_content);
-			if(result == 1){
-				RequestDispatcher view = req.getRequestDispatcher("");
-				view.forward(req, resp);
-			}
-			else{
-				RequestDispatcher view = req.getRequestDispatcher("");
-				view.forward(req, resp);				
-			}
-		}
-		else if("readDelete".equals(command)){
-			int reviews_number = Integer.parseInt(req.getParameter("reviews_number"));
 			String reviews_pw = req.getParameter("reviews_pw");
 			
-			int result = rDao.reviewDelete(reviews_number, reviews_pw);
+			rvo.setReviews_number(Integer.parseInt(reviews_number));
+			rvo.setReviews_title(reviews_title);
+			rvo.setReviews_content(reviews_content);
+			rvo.setReviews_pw(reviews_pw);			
+			req.setAttribute("reviews_readVo", rvo);
+			
+			System.out.println("content : " + rvo.getReviews_content());
+			
+			RequestDispatcher view = req.getRequestDispatcher("./papercompany/review/reviews_update.jsp");
+			view.forward(req, resp);
+		}
+		else if("review_update".equals(command)){
+			String reviews_number = req.getParameter("reviews_number");
+			String reviews_title = req.getParameter("reviews_title");
+			String reviews_content = req.getParameter("reviews_content");
+			String reviews_pw = req.getParameter("reviews_pw");
+			
+			rvo.setReviews_number(Integer.parseInt(reviews_number));
+			rvo.setReviews_title(reviews_title);
+			rvo.setReviews_content(reviews_content);
+			rvo.setReviews_pw(reviews_pw);
+			
+			int result = rDao.reviewUpdate(rvo);
+			
 			if(result == 1){
-				RequestDispatcher view = req.getRequestDispatcher("");
-				view.forward(req, resp);
+				resp.sendRedirect("/webTestProject/review_board.review?command=getReviewRead&reviews_number="+rvo.getReviews_number());
+				/*RequestDispatcher view = req.getRequestDispatcher("/webTestProject/review_board.review?command=getReviewRead&reviews_number="+rvo.getReviews_number());
+				view.forward(req, resp);*/
 			}
 			else{
-				RequestDispatcher view = req.getRequestDispatcher("");
-				view.forward(req, resp);				
+				resp.sendRedirect("./papercompany/review/reviews_update_fail.jsp");
+				/*RequestDispatcher view = req.getRequestDispatcher("./papercompany/review/reviews_update_fail.jsp");
+				view.forward(req, resp);*/
+			}
+		}
+		else if("read_delete".equals(command)){
+			int reviews_number = Integer.parseInt(req.getParameter("reviews_number"));
+			String reviews_pw = req.getParameter("reviews_pw");
+			int reviews_reply_size = Integer.parseInt(req.getParameter("reviews_reply_size"));
+			
+			if(reviews_reply_size > 0){
+				rpDao.replyDelete(reviews_number);				
+			}
+			
+			System.out.println("reviews_number : " + reviews_number);
+			int result = rDao.reviewDelete(reviews_number, reviews_pw);
+			
+			if(result == 1){
+				resp.sendRedirect("/webTestProject/review_board.review?command=getReviewList");
+				/*RequestDispatcher view = req.getRequestDispatcher("/webTestProject/review_board.review?command=getReviewList");
+				view.forward(req, resp);*/
+			}
+			else{
+				resp.sendRedirect("./papercompany/review/reviews_delete_fail.jsp");
+				/*RequestDispatcher view = req.getRequestDispatcher("./papercompany/review/reviews_delete_fail.jsp");
+				view.forward(req, resp);*/
 			}
 		}
 	}

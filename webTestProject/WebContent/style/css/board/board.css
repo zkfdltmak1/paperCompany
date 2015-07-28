@@ -28,15 +28,29 @@ body {
 	font-smoothing: antialiased;
 }
 
-
-
-
 input {
 	color: #bdbab4;
 }
 
 #write{
 	text-align: center;	
+}
+
+#reviews_read_tbody{
+	text-align: center;
+	height: 300px;
+}
+
+tbody tr#reply_list {
+	text-align: center;
+}
+
+tbody tr#reply_list td#reply_list_id{
+	width: 100px;
+}
+
+tbody tr#reply_list td#reply_list_content{
+	width: 900px;
 }
   
 /* 레이아웃 */
@@ -71,6 +85,7 @@ input {
 	height: 25px;
 	-webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
 	font-weight: 400px;
+	font-size: 20pt;
 }
 
 #table_board tr td:nth-child(2), #table_board tfoot tr td {

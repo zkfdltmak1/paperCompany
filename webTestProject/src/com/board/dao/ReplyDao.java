@@ -16,16 +16,17 @@ public class ReplyDao {
 	private Connection 			con 	= null;
 	private PreparedStatement 	pstmt	= null;
 	private ResultSet 			rs 		= null;
-
+	
+	// 리플 목록 가져오기
 	public List<ReplyVO> getReplyforum(int reply_number){
 		List<ReplyVO> voList = new ArrayList<ReplyVO>();
 		StringBuilder sql = new StringBuilder();
 		sql.append("select REPLY_ID, REPLY_CONTENT from REPLY_FORUM where REVIEWS_NUMBER = ?");
-	try{
-		con = dbMgr.getConnection();
-		pstmt = con.prepareStatement(sql.toString());
-		pstmt.setInt(1, reply_number);
-		rs = pstmt.executeQuery();
+		try{
+			con = dbMgr.getConnection();
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, reply_number);
+			rs = pstmt.executeQuery();
 		
 		while(rs.next()){
 			ReplyVO rVO = new ReplyVO();
@@ -42,4 +43,21 @@ public class ReplyDao {
 	}
 		return voList;
 	}
+	
+	// 글삭제하면서 리플 삭제하기
+	public void replyDelete(int reviews_number){
+		StringBuffer sql = new StringBuffer();
+		sql.append("delete from reply_forum where reviews_number = ?");
+		
+		try{
+			con = dbMgr.getConnection();
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setInt(1, reviews_number);
+			pstmt.executeUpdate();
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -8,8 +8,8 @@
 <jsp:useBean id="fvo" class="com.board.vo.ForumVO" ></jsp:useBean>
 
 <%
-	 ArrayList<ForumVO> fList = (ArrayList<ForumVO>)session.getAttribute("fList"); 
-	
+	ArrayList<ForumVO> fList = (ArrayList<ForumVO>)session.getAttribute("fList"); 
+
 	final int ROWSIZE =10;  // 한페이지에 보일 게시물 수
 	final int BLOCK = 5; // 아래에 보일 페이지 최대개수 1~5 / 6~10 / 11~15 식으로 5개로 고정
 	int pg = 1; //기본 페이지값;

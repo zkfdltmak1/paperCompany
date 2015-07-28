@@ -39,7 +39,6 @@
 		out.write("</script>\n");
 	}
 	
-	
 	String login =  (String)request.getAttribute("login_null");
 	
 	if("로그인실패".equals(login)){
@@ -68,11 +67,12 @@
 	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/indexModal/indexModal.css"/>
 	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/main/main.css"/>
 	<script type="text/javascript">
-
+	
 	$(document).ready(function(){
 		var session = <%=session_email%>;
 		if(session == null){
-			$("#loginModal").modal("show");		
+			$("#loginModal").modal("show");
+			$("#email").focus();
 		}
 		else{
 			$("#loginModal").modal("hide");
@@ -87,8 +87,6 @@
 	<!-- 헤더 영역 -->
 
 	<!-- 본문 영역 -->
-	
-	
 	<section>
 		<div id="index_section">
 		<article><a href="#" ><img id="img1" src="/webTestProject/style/image/bus4.jpg" ></a></article>
@@ -100,6 +98,7 @@
 		
 	<!-- 푸터영역 -->
 	<jsp:include page="./papercompany/mainBar/mainFooter.jsp"></jsp:include>
+	<!-- 푸터영역 -->
 	
 	<!-- 모달 부분 코드는 제일 아래로 -->
 	<!-- loginModal -->
@@ -220,6 +219,5 @@
 			</div>
 		</div>
 	</div>
-	
 </body> 
 </html> 

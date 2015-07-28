@@ -29,7 +29,7 @@
 	<!-- Top  -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	
-	<div class="container">
+	<div class="con">
 			<table id="table_board" class="list">
 				<colgroup>
 					<col width="150">

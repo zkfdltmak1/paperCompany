@@ -18,14 +18,15 @@ footer{
 #index_section {
 	width: 1000px;
 	margin: 0 auto;
-	background-color : #000;
+	background: url(/webTestProject/style/image/main.jpg) center center no-repeat;
+	background-size: cover;
 }
 
 #index_section > article> a > img{
 	width: 700px;
 	height: 200px;
-	margin-left: 15%;
-	margin-right: 15%;
+	margin-left: 150px;
+	margin-right: 150px;
 	opacity:0.2;
 	border-radius: 30px;
 	
