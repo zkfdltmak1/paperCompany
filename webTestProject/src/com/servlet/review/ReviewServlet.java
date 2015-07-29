@@ -48,13 +48,14 @@ public class ReviewServlet extends HttpServlet{
 			String reviews_title = req.getParameter("reviews_title");
 			String reviews_content = req.getParameter("reviews_content");
 			String reviews_pw = req.getParameter("reviews_pw");
+			String session_id = req.getParameter("session_id");
 			
 			System.out.println("review reviews_content : " + reviews_content);
 			
 			rvo.setReviews_title(reviews_title);
 			rvo.setReviews_content(reviews_content);
 			rvo.setReviews_pw(reviews_pw);
-			rDao.insertReviewWrite(rvo);
+			rDao.insertReviewWrite(rvo, session_id);
 			
 			resp.sendRedirect("/webTestProject/review_board.review?command=getReviewList");
 		}

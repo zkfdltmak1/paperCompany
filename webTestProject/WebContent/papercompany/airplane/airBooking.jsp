@@ -25,11 +25,11 @@
   webshims.setOptions('forms-ext', {types: 'date'});
   webshims.polyfill('forms forms-ext');
 </script>
-<script type="text/javascript">
-	$(function(){
-		$(".btn").
-	});
-</script>
+<style>
+	body{
+		width: 1000px;
+	}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -38,44 +38,51 @@
 				<form class="form-horizontal" role="form">
 					<fieldset>
 						<!-- Form Name -->
-						<legend>비행기 예매</legend>
+						<legend><h3>비행기 예매</h3></legend>
 						
 						<!-- 출발지, 도착지 -->
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="textinput">장소</label>
-							<div class="col-sm-5">
+							<label class="col-sm-3 control-label">장소</label>
+							<div class="col-sm-4">
 								<input type="text" placeholder="출발지" class="form-control">
 							</div>
 						 
 							<!-- <label class="col-sm-2 control-label" for="textinput"></label> -->
-							<div class="col-sm-5">
+							<div class="col-sm-4">
 								<input type="text" placeholder="도착지" class="form-control">
 							</div>
 						</div>
 						
 						<!-- 날짜 -->
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="textinput">날짜</label>
-							<div class="col-sm-10">
+							<label class="col-sm-3 control-label" for="textinput">날짜</label>
+							<div class="col-sm-8">
 								<input class="form-control" type="date" placeholder="<%=today%>" min="<%=today%>" max="<%=endday%>"/>
 							</div>
 						</div>
 						
 						<!-- 인원수 -->
 						<div class="form-group">
-							<label class="col-sm-2 control-label" for="textinput">인원수</label>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-										<span class="glyphicon glyphicon-minus"></span>
-									</button>
-								</span>
-								<input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-								</span>
+							<label class="col-sm-3 control-label" for="sel1">인원</label>
+							<div class="col-sm-4">
+								<select class="form-control" id="adults">
+									<option>대인</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
+							</div>
+							<div class="col-sm-4">
+								<select class="form-control" id="kids">
+									<option>소인</option>
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+									<option>5</option>
+								</select>
 							</div>
 						</div>
 						

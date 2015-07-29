@@ -51,7 +51,7 @@ public class ReviewDao {
 	}
 	
 	// 후기 게시판 글쓰기
-	public void insertReviewWrite(ReviewVO rvo){
+	public void insertReviewWrite(ReviewVO rvo, String session_id){
 		sql = new StringBuffer();
 		sql.append("insert into reviews_forum(reviews_number,");
 		sql.append(" reviews_title, reviews_content, reviews_pw, m_email) ");
@@ -62,7 +62,7 @@ public class ReviewDao {
 			pstmt.setString(1, rvo.getReviews_title());
 			pstmt.setString(2, rvo.getReviews_content());
 			pstmt.setString(3, rvo.getReviews_pw());
-			pstmt.setString(4, "zkfdltmak1@naver.com");
+			pstmt.setString(4, session_id);
 			pstmt.executeUpdate();
 		}
 		catch(SQLException sqle){

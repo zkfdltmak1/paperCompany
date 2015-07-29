@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String session_id = (String)session.getAttribute("s_member_email"); %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -95,6 +96,7 @@
 				</tfoot>
 			</table>
 			<input type="hidden" name="command" value="review_write">
+			<input type="hidden" name="session_id" value="<%=session_id%>">
 			</form>
 	</div>
 	<!-- footer -->	
