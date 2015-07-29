@@ -55,7 +55,10 @@
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<%if(session_email==null){
 	%>
-		<h1>정상적인 접근이 아닙니다</h1>
+		<script type="text/javascript">
+			alert("정상적인 접근이 아닙니다.");
+			location.href="/webTestProject/index.jsp";
+		</script>
 	<%
 	}else{
 		%>

@@ -27,11 +27,20 @@
 </script>
 <style>
 	body{
-		width: 1000px;
+		float: 0 auto;
+	}
+	.container{
+		padding-top: 240px;
+		padding-bottom: 240px;
 	}
 </style>
 </head>
 <body>
+	<!-- 헤더 영역 -->
+	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
+	<!-- 헤더 영역 -->
+	
+	<!-- 본문 영역 -->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
@@ -44,12 +53,18 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">장소</label>
 							<div class="col-sm-4">
-								<input type="text" placeholder="출발지" class="form-control">
+								<select class="form-control" id="airBooking_startCity" name="airBooking_startCity">
+									<option>출발지</option>
+									<!-- DB에서? -->
+								</select>
 							</div>
-						 
+						 	
 							<!-- <label class="col-sm-2 control-label" for="textinput"></label> -->
 							<div class="col-sm-4">
-								<input type="text" placeholder="도착지" class="form-control">
+								<select class="form-control" id="airBooking_arrivalCity" name="airBooking_arrivalCity">
+									<option>출발지</option>
+									<!-- DB에서? -->
+								</select>
 							</div>
 						</div>
 						
@@ -57,7 +72,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="textinput">날짜</label>
 							<div class="col-sm-8">
-								<input class="form-control" type="date" placeholder="<%=today%>" min="<%=today%>" max="<%=endday%>"/>
+								<input class="form-control" type="date" placeholder="<%=today%>" min="<%=today%>" max="<%=endday%>" id="airBooking_date" name="airBooking_date"/>
 							</div>
 						</div>
 						
@@ -65,7 +80,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="sel1">인원</label>
 							<div class="col-sm-4">
-								<select class="form-control" id="adults">
+								<select class="form-control" id="airBooking_adults" name="airBooking_adults">
 									<option>대인</option>
 									<option>1</option>
 									<option>2</option>
@@ -75,7 +90,7 @@
 								</select>
 							</div>
 							<div class="col-sm-4">
-								<select class="form-control" id="kids">
+								<select class="form-control" id="airBooking_kids" name="airBooking_kids">
 									<option>소인</option>
 									<option>1</option>
 									<option>2</option>
@@ -88,10 +103,10 @@
 						
 						<!-- 버튼 -->
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10">
+							<div class="col-sm-offset-2 col-sm-7">
 								<div class="pull-right">
-									<button type="submit" class="btn btn-default">Cancel</button>
-									<button type="submit" class="btn btn-primary">Save</button>
+									<button type="submit" class="btn btn-primary">예매</button>
+									<button type="button" class="btn btn-default" onclick="">취소</button>
 								</div>
 							</div>
 						</div>
@@ -101,5 +116,10 @@
 			</div><!-- /.col-lg-12 -->
 		</div><!-- /.row -->
 	</div>
+	<!-- 본문 영역 -->
+	
+	<!-- 푸터 영역 -->
+	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
+	<!-- 푸터 영역 -->
 </body>
 </html>
