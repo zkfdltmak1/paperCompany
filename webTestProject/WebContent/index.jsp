@@ -55,19 +55,18 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, 
-	               maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-	<title>Index Page</title>
-	<script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
-	<script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
-	<script type="text/javascript" src="/webTestProject/style/js/indexModal/indexModal.js"></script>
-	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/indexModal/indexModal.css"/>
-	<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/main/main.css"/>
-	<script type="text/javascript">
-	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, 
+               maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<title>Index Page</title>
+<script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
+<script type="text/javascript" src="/webTestProject/style/js/indexModal/indexModal.js"></script>
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/indexModal/indexModal.css"/>
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/main/main.css"/>
+<script type="text/javascript">
 	$(document).ready(function(){
 		var session = <%=session_email%>;
 		if(session == null){
@@ -78,8 +77,7 @@
 			$("#loginModal").modal("hide");
 		}
 	});
-
-	</script> 
+</script> 
 </head>
 <body>
 	<!-- 헤더 영역 -->

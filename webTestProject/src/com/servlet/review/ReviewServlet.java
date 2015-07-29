@@ -37,9 +37,11 @@ public class ReviewServlet extends HttpServlet{
 		
 		String command = req.getParameter("command");
 		ReviewVO rvo = new ReviewVO();
+		ReplyVO rpvo = new ReplyVO();
 		ReviewDao rDao = new ReviewDao();
 		ReplyDao rpDao = new ReplyDao();
 		
+		// 후기 글 추가
 		if("review_write".equals(command)){
 
 			
@@ -56,6 +58,7 @@ public class ReviewServlet extends HttpServlet{
 			
 			resp.sendRedirect("/webTestProject/review_board.review?command=getReviewList");
 		}
+		// 후기 글 목록 가져오기
 		else if("getReviewList".equals(command)){
 			List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 			reviewList = rDao.getReviewList();
@@ -64,6 +67,7 @@ public class ReviewServlet extends HttpServlet{
 					req.getRequestDispatcher("./papercompany/review/reviews_list.jsp");
 			view.forward(req, resp);//이동	 
 		}
+		// 후기 글 읽기
 		else if("getReviewRead".equals(command)){
 			List<ReplyVO> rpList = new ArrayList<ReplyVO>();
 			int reviews_number = Integer.parseInt(req.getParameter("reviews_number"));
@@ -78,6 +82,7 @@ public class ReviewServlet extends HttpServlet{
 					req.getRequestDispatcher("./papercompany/review/reviews_read.jsp");
 			view.forward(req, resp);
 		}
+		// 후기 글 수정 페이지로
 		else if("readUpadateProc".equals(command)){
 			String reviews_number = req.getParameter("reviews_number");
 			String reviews_title = req.getParameter("reviews_title");
@@ -95,6 +100,7 @@ public class ReviewServlet extends HttpServlet{
 			RequestDispatcher view = req.getRequestDispatcher("./papercompany/review/reviews_update.jsp");
 			view.forward(req, resp);
 		}
+		// 후기 글 수정 하기
 		else if("review_update".equals(command)){
 			String reviews_number = req.getParameter("reviews_number");
 			String reviews_title = req.getParameter("reviews_title");
@@ -119,6 +125,7 @@ public class ReviewServlet extends HttpServlet{
 				view.forward(req, resp);*/
 			}
 		}
+		// 후기 글 삭제하기 
 		else if("read_delete".equals(command)){
 			int reviews_number = Integer.parseInt(req.getParameter("reviews_number"));
 			String reviews_pw = req.getParameter("reviews_pw");
@@ -141,6 +148,20 @@ public class ReviewServlet extends HttpServlet{
 				/*RequestDispatcher view = req.getRequestDispatcher("./papercompany/review/reviews_delete_fail.jsp");
 				view.forward(req, resp);*/
 			}
+		}
+		//답글 추가 하기 서블릿
+		else if("insertReply".equals(command)){
+			String reply_content = req.getParameter("reviews_reply");
+			int reviews_number = Integer.parseInt(req.getParameter("reviews_number"));		
+			String reply_id = req.getParameter("session_id");
+			
+			rpvo.setReply_id(reply_id);
+			rpvo.setReviews_number(reviews_number);
+			rpvo.setReply_content(reply_content);
+
+			rpDao.insertReply(rpvo);
+			
+			resp.sendRedirect("/webTestProject/review_board.review?command=getReviewRead&reviews_number="+reviews_number);
 		}
 	}
 	

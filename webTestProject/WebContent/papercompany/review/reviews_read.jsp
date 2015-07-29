@@ -5,6 +5,7 @@
 <%
 	ReviewVO rvo = (ReviewVO)request.getAttribute("review_read");
 	List<ReplyVO> rpList = (List<ReplyVO>)request.getAttribute("rpList");
+	String session_id = (String)session.getAttribute("s_member_email");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -42,6 +43,14 @@
 			location.href="/webTestProject/review_board.review?command=getReviewList";
 		}
 	}
+	
+	function insertReply(){
+		$("#insertReply").attr({
+			method : "post",
+			action : "/webTestProject/review_board.review"
+		}).submit();
+	}
+	
 </script>
 </head>
 <body>
@@ -88,13 +97,17 @@
 				<%}
 				}%>
 				<!-- for문 돌림 -->
-				<form method="post" action="insertReply">
+				<form id="insertReply">
 					<tr class="reply">
 						<td colspan="2">
 								<input type="text" name="reviews_reply" id="reviews_reply" size="90">
 						</td>
 						<td>
-							<input type="submit" value="댓글 작성">
+							<input type="button" value="댓글 작성" onclick="insertReply()">
+							<input type="hidden" name="command" value="insertReply">
+							<input type="hidden" name="reviews_number" value="<%=rvo.getReviews_number()%>">
+							<input type="hidden" name="session_id" value="<%=session_id%>">
+							
 						</td>
 					</tr>
 				</form>
@@ -109,6 +122,7 @@
 							<input type="hidden" name="reviews_content" value="<%=rvo.getReviews_content()%>">
 							<input type="hidden" name="reviews_pw" value="<%=rvo.getReviews_pw()%>">
 					</form>
+					<%if(session_id.equals(rvo.getM_email())){%>
 					<form name="f_readDelet" id="f_readDelete">
 							<a href="javascript:fnReadDelete()">삭제</a> | 
 							<input type="hidden" name="command" value="read_delete">
@@ -116,6 +130,7 @@
 							<input type="hidden" name="reviews_pw" value="<%= rvo.getReviews_pw() %>">
 							<input type="hidden" name="reviews_reply_size" value="<%= rpList.size() %>">
 					</form>
+					<%}%>
 					<a href="javascript:history.back()">목록으로</a>
 				</td>
 			</tfoot>

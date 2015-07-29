@@ -60,4 +60,28 @@ public class ReplyDao {
 		}
 	}
 	
+	// 댓글 추가 하기
+	public void insertReply(ReplyVO rpvo) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("insert into reply_forum(reply_id,");
+		sql.append(" reviews_number, reply_content, reply_number) ");
+		sql.append("values(?, ?, ?, SEQ_REPLY_NUMBER.nextval)");
+		try{
+			con = dbMgr.getConnection();
+			pstmt = con.prepareStatement(sql.toString());
+			pstmt.setString(1, rpvo.getReply_id());
+			pstmt.setInt(2, rpvo.getReviews_number());
+			pstmt.setString(3, rpvo.getReply_content());
+
+			pstmt.executeUpdate();
+		}
+		catch(SQLException sqle){
+			sqle.printStackTrace();
+		}
+		finally{
+			dbMgr.freeConnection(con, pstmt);
+		}
+		
+	}
+	
 }

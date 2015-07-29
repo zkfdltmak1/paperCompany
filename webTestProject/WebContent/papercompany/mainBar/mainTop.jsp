@@ -44,7 +44,9 @@
 				<div class="header-user-menu">
 					<b>회원정보</b>
 					<ul>
+						<li><a href="#">예매확인</a></li>
 						<li><a href="#">마이페이지</a></li>
+						<li><a href="#">회원정보수정</a></li>
 					</ul>
 				</div>
 				<div class="header-user-menu">
