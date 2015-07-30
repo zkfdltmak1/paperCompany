@@ -88,7 +88,7 @@
 	<section>
 		<div id="index_section">
 		<article><a href="#" ><img id="img1" src="/webTestProject/style/image/bus4.jpg" ></a></article>
-		<article><a href="#" ><img id="img2" src="/webTestProject/style/image/airplane2.jpg" ></a></article>
+		<article><a href="/webTestProject/papercompany/airplane/airBooking.jsp" ><img id="img2" src="/webTestProject/style/image/airplane2.jpg" ></a></article>
 		<article><a href="#" ><img id="img3" src="/webTestProject/style/image/train4.jpg" ></a></article>	
 		</div>
 	</section>

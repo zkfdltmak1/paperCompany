@@ -20,20 +20,12 @@
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/polyfiller.js"></script>
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/booking/airplane/airBooking.css" />
 <script>
   webshims.setOptions('waitReady', false);
   webshims.setOptions('forms-ext', {types: 'date'});
   webshims.polyfill('forms forms-ext');
 </script>
-<style>
-	body{
-		float: 0 auto;
-	}
-	.container{
-		padding-top: 240px;
-		padding-bottom: 240px;
-	}
-</style>
 </head>
 <body>
 	<!-- 헤더 영역 -->
@@ -44,7 +36,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form class="form-horizontal" role="form">
+				<form class="form-horizontal airBooking_form" role="form">
 					<fieldset>
 						<!-- Form Name -->
 						<legend><h3>비행기 예매</h3></legend>
@@ -53,20 +45,30 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label">장소</label>
 							<div class="col-sm-4">
-								<select class="form-control" id="airBooking_startCity" name="airBooking_startCity">
+								<select class="form-control selectpicker" id="airBooking_startCity" name="airBooking_startCity">
 									<option>출발지</option>
-									<!-- DB에서? -->
+									<option>서울</option>
+									<option>부산</option>
+									<option>제주</option>
+									<option>여수</option>
+									<option>청주</option>
 								</select>
 							</div>
 						 	
 							<!-- <label class="col-sm-2 control-label" for="textinput"></label> -->
 							<div class="col-sm-4">
 								<select class="form-control" id="airBooking_arrivalCity" name="airBooking_arrivalCity">
-									<option>출발지</option>
-									<!-- DB에서? -->
+									<option>도착지</option>
+									<option>서울</option>
+									<option>부산</option>
+									<option>제주</option>
+									<option>여수</option>
+									<option>청주</option>
 								</select>
 							</div>
 						</div>
+						
+						<!-- 출발지와 도착지가 같으면 검색결과 없음 -->
 						
 						<!-- 날짜 -->
 						<div class="form-group">
@@ -92,18 +94,19 @@
 							<div class="col-sm-4">
 								<select class="form-control" id="airBooking_kids" name="airBooking_kids">
 									<option>소인</option>
+									<option>0</option>
 									<option>1</option>
 									<option>2</option>
 									<option>3</option>
 									<option>4</option>
 									<option>5</option>
 								</select>
-							</div>
+							</div>							
 						</div>
 						
 						<!-- 버튼 -->
 						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-7">
+							<div class="col-sm-offset-2 col-sm-6">
 								<div class="pull-right">
 									<button type="submit" class="btn btn-primary">예매</button>
 									<button type="button" class="btn btn-default" onclick="">취소</button>

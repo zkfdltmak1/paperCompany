@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+body{
+	float: 0 auto;
+}
+.container{
+	/* padding-top: 240px;
+	padding-bottom: 240px; */
+	margin-top: 240px;
+	margin-bottom: 240px;
+}
+
+.airBooking_form{
+}
