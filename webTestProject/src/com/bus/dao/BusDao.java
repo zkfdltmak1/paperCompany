@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.booking.vo.BookingVO;
 import com.util.DBConnectionMgr;
 
 public class BusDao {
@@ -51,7 +52,42 @@ public class BusDao {
 		return seq-1;
 	}
    	
-
+   	
+   	//예매 체크 -미완 HashMap리턴으로 변경
+	public BookingVO bookingChack(int b_code, int d_code){
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM BOOKING_DETAILS ");
+		sql.append(" WHERE WHERE booking_dcode = ? ");
+		sql.append("   AND Booking_code = ? ");
+	    ResultSet rs = null;
+	    BookingVO bvo = new BookingVO();
+	    Connection	con = null;
+		PreparedStatement pstmt = null;
+		try{
+			pstmt = con.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+		  if(rs.next()){
+			  bvo.setArrival_time(rs.getString("ARRIVAL_TIME"));        
+			  bvo.setBooking_price(rs.getString("BOOKING_PRICE"));
+			  bvo.setBooking_dcode(rs.getInt("BOOKING_DCODE"));        
+			  bvo.setBooking_age(rs.getString("BOOKING_AGE"));       
+			  bvo.setBooking_code(rs.getInt("BOOKING_CODE"));       
+			  bvo.setSeat_code(rs.getString("SEAT_CODE"));    
+			  bvo.setTime_code(rs.getString("TIME_CODE"));      
+			  bvo.setStart_city(rs.getString("START_CITY"));      
+			  bvo.setVehicle_code(rs.getString("VEHICLE_CODE"));      
+			  bvo.setDp_date(rs.getString("DP_DATE"));  
+			  bvo.setArrival_city(rs.getString("ARRIVAL_CITY"));
+		  }
+		
+		}catch(SQLException se){
+			System.out.println("booking2 = [ "+se+" ]");
+		}catch (Exception e){
+			System.out.println("booking2 = [ "+e+" ]");
+		}
+	    
+	    return bvo;
+	}
    
    	//버스예매
    	public boolean bookingBus(String b_brice, int d_code, String age, int b_code, String s_code, String t_code,
