@@ -2,40 +2,56 @@ package com.bus.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.util.DBConnectionMgr;
 
 public class BusDao {
-
+	 
 	DBConnectionMgr dbMgr = new DBConnectionMgr();
-	//통합예매코드
-   	public boolean booking(String m_email){
+	//통합예매코드--리턴값==시퀀스
+   	public int booking(String m_email){
 		StringBuffer dml = new StringBuffer();
 		dml.append("INSERT INTO BOOKING(BOOKING_CODE, BOOKING_DAY, M_EMAIL) ");
-		dml.append("VALUES(seq_booking_number.nextval, ?, to_char(sysdate,'yyyy-mm-dd HH:MM') ");
-		
-		boolean success = false;
+		dml.append("VALUES(seq_booking_number.nextval, to_char(sysdate,'yyyy-mm-dd HH:MM'), ?) ");
 		Connection	con = null;
 		PreparedStatement pstmt = null;
 		
+		
 		try{
 			con	=dbMgr.getConnection();
+			
 			pstmt = con.prepareStatement(dml.toString());
 			pstmt.setString(1,m_email);
-			
-			int i = pstmt.executeUpdate();
-			if(i==1)success = true;
-			
+			pstmt.executeUpdate();
+	
 		}catch(SQLException se){
-			System.out.println("bookingBus = [ "+se+" ]");
+			System.out.println("booking = [ "+se+" ]");
 		}catch (Exception e){
-			System.out.println("bookingBus = [ "+e+" ]");
-		
+			System.out.println("booking = [ "+e+" ]");
 		}
-		return success;
+	
+		int seq = 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT LAST_NUMBER FROM USER_SEQUENCES WHERE SEQUENCE_NAME='SEQ_BOOKING_NUMBER' ");
+	    ResultSet rs = null;
+		try{
+			pstmt = con.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				seq = rs.getInt("LAST_NUMBER");
+			}
+					
+		}catch(SQLException se){
+			System.out.println("booking2 = [ "+se+" ]");
+		}catch (Exception e){
+			System.out.println("booking2 = [ "+e+" ]");
+		}
+		return seq-1;
 	}
    	
+
    
    	//버스예매
    	public boolean bookingBus(String b_brice, int d_code, String age, int b_code, String s_code, String t_code,
@@ -75,4 +91,5 @@ public class BusDao {
 		}
 		return success;
 	}
+   	
 }
