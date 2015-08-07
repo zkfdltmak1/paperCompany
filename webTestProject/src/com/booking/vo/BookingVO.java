@@ -3,17 +3,19 @@ package com.booking.vo;
 public class BookingVO {
 	private String  arrival_time;           
 	private String  booking_price; 
-	private int  	booking_dcode;          
+	private int  	  booking_dcode;          
 	private String  booking_age;           
-	private int  	booking_code;          
+	private int  	  booking_code;          
 	private String  seat_code;           
 	private String  time_code;            
 	private String  start_city;           
-	private String  vehicle_code;         
+	private String  vehicle_code;
 	private String  dp_date;          
 	private String  arrival_city;
-	 
-	
+	private String  time_time;
+	private String  seat_number;
+	private String  seat_seat;
+	private String  city_city;
 	
 	public String getArrival_time() {
 		return arrival_time;
@@ -81,8 +83,29 @@ public class BookingVO {
 	public void setArrival_city(String arrival_city) {
 		this.arrival_city = arrival_city;
 	}
-	
-	
-	
+	public String getTime_time() {
+		return time_time;
+	}
+	public void setTime_time(String time_time) {
+		this.time_time = time_time;
+	}
+	public String getSeat_number() {
+		return seat_number;
+	}
+	public void setSeat_number(String seat_number) {
+		this.seat_number = seat_number;
+	}
+	public String getSeat_seat() {
+		return seat_seat;
+	}
+	public void setSeat_seat(String seat_seat) {
+		this.seat_seat = seat_seat;
+	}
+	public String getCity_city() {
+		return city_city;
+	}
+	public void setCity_city(String city_city) {
+		this.city_city = city_city;
+	}
 	
 }

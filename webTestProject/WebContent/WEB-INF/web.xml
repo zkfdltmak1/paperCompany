@@ -41,6 +41,7 @@
     <servlet-name>memberLogin</servlet-name>
     <url-pattern>/memberLogin</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>LogOut</servlet-name>
     <servlet-class>com.servlet.member.MemberServletLogOut</servlet-class>
@@ -49,6 +50,7 @@
     <servlet-name>LogOut</servlet-name>
     <url-pattern>/papercompany/mainBar/LogOut</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>review</servlet-name>
     <servlet-class>com.servlet.review.ReviewServlet</servlet-class>
@@ -57,6 +59,7 @@
     <servlet-name>review</servlet-name>
     <url-pattern>/review_board.review</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>forum</servlet-name>
     <servlet-class>com.servlet.forum.Forum_Servlet</servlet-class>
@@ -64,5 +67,14 @@
   <servlet-mapping>
     <servlet-name>forum</servlet-name>
     <url-pattern>/board/forum.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>air</servlet-name>
+    <servlet-class>com.servlet.airBooking.AirplaneServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>air</servlet-name>
+    <url-pattern>/airBooking.air</url-pattern>
   </servlet-mapping>
 </web-app>

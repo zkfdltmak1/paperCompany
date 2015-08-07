@@ -1,37 +1,73 @@
 @CHARSET "UTF-8";
 
 .container{
-	width: 350px;
-	height: 600px;
-	margin-top: 73px;
-	margin-bottom: 73px;
-	overflow-y: scroll;
-	display: inline-block;
 	box-shadow: 0 0 10px 0.2px gray;
 }
 
 .row{
-	padding-top: 25px;
+	padding-top: 20px;
 }
 
 .air_time_table{
+	float:left;
+	width: 450px;
+	height: 700px;
+	margin-top: 73px;
+	margin-bottom: 73px;
 	margin-left: 180px;
+	overflow: hidden;
 }
 
-.air_remain_seat{
+.air_remain{
+	float:left;
+	width: 420px;
+	height: 700px;
+	margin-top: 73px;
 	margin-left: 25px;
+	overflow: hidden;
+}
+
+.air_time_table li{
+	width: 400px;	
+}
+
+.air_remain .span5{
+	width: 350px;
 }
 
 .air_time_table li,
-.air_remain_seat li {
+.air_remain .span5{
 	list-style: none;
-	width: 300px;
 	margin: 0 -25px;
 }
 
-.air_time_table_list:hover,
-.air_remain_seat_list:hover{
+#air_time_table_list:hover{
 	color: #000;
     background-color: #DDD;
     border-color: #DDD;
+}
+
+.orderby{
+	width: 390px;
+}
+
+.orderby li{
+	width: 50px;
+	height: 30px;
+	margin: 0 auto;
+	list-style: none;
+	float: left;
+	border: 1px solid skyblue;
+	text-align: center;
+}
+
+.reserve {
+    background-color: orange;
+}
+
+.air_buy_decide{
+	width: 900px;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 70px;
 }

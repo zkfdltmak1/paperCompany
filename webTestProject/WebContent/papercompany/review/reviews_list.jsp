@@ -13,6 +13,9 @@
 	if(reviewList !=null){         //NullPointerException
 		size = reviewList.size();
 	}
+	
+	int total = 0;
+	
 //	out.print("size:"+size);
 %>
 <head>
@@ -22,6 +25,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <title>Insert title here</title>
 <script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
 
 </head>

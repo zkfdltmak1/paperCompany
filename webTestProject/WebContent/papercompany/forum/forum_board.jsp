@@ -48,7 +48,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
 <script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js">
+<script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
 </script>
 </head>
 <body>

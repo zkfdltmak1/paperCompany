@@ -16,6 +16,7 @@
 					maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
 <script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/webTestProject/style/js/airBooking/airBooking.js"></script>
 <script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
 <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
@@ -36,11 +37,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
-				<form class="form-horizontal airBooking_form" role="form">
 					<fieldset>
 						<!-- Form Name -->
 						<legend><h3>비행기 예매</h3></legend>
 						
+						<form class="form-horizontal airBooking_form" role="form" method="post" action="/webTestProject/airBooking.air">
 						<!-- 출발지, 도착지 -->
 						<div class="form-group">
 							<label class="col-sm-3 control-label">장소</label>
@@ -49,7 +50,7 @@
 									<option>출발지</option>
 									<option>서울</option>
 									<option>부산</option>
-									<option>제주</option>
+									<option>제주도</option>
 									<option>여수</option>
 									<option>청주</option>
 								</select>
@@ -61,7 +62,7 @@
 									<option>도착지</option>
 									<option>서울</option>
 									<option>부산</option>
-									<option>제주</option>
+									<option>제주도</option>
 									<option>여수</option>
 									<option>청주</option>
 								</select>
@@ -74,7 +75,7 @@
 						<div class="form-group">
 							<label class="col-sm-3 control-label" for="textinput">날짜</label>
 							<div class="col-sm-8">
-								<input class="form-control" type="date" placeholder="<%=today%>" min="<%=today%>" max="<%=endday%>" id="airBooking_date" name="airBooking_date"/>
+								<input class="form-control" type="date" value="<%= today %>"  min="<%=today%>" max="<%=endday%>" id="airBooking_date" name="airBooking_date"/>
 							</div>
 						</div>
 						
@@ -88,18 +89,11 @@
 									<option>2</option>
 									<option>3</option>
 									<option>4</option>
-									<option>5</option>
 								</select>
 							</div>
 							<div class="col-sm-4">
 								<select class="form-control" id="airBooking_kids" name="airBooking_kids">
 									<option>소인</option>
-									<option>0</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
-									<option>5</option>
 								</select>
 							</div>							
 						</div>
@@ -108,14 +102,15 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-6">
 								<div class="pull-right">
-									<button type="submit" class="btn btn-primary">예매</button>
-									<button type="button" class="btn btn-default" onclick="">취소</button>
+									<button type="submit" class="btn btn-primary" id="btn-primary">예매</button>
+									<button type="reset" class="btn btn-default">취소</button>
 								</div>
 							</div>
 						</div>
+						<input type="hidden" name="command" value="airBooking_loading">
+						</form>
 						
 					</fieldset>
-				</form>
 			</div><!-- /.col-lg-12 -->
 		</div><!-- /.row -->
 	</div>
