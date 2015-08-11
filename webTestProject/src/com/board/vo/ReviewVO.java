@@ -7,6 +7,7 @@ public class ReviewVO {
 	private String reviews_content;
 	private String reviews_pw;
 	private String m_email;
+	private String m_nickname;
 	
 	public int getReviews_number() {
 		return reviews_number;
@@ -37,6 +38,12 @@ public class ReviewVO {
 	}
 	public void setM_email(String m_email) {
 		this.m_email = m_email;
+	}
+	public String getM_nickname() {
+		return m_nickname;
+	}
+	public void setM_nickname(String m_nickname) {
+		this.m_nickname = m_nickname;
 	}
 	
 }

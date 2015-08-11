@@ -7,8 +7,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%
- 	List<String> airBooking_timeList = (List<String>)request.getAttribute("airBooking_timeList");
-	List<String> airBooking_vehicleList = (List<String>)request.getAttribute("airBooking_vehicleList");
+	String session_email = (String)session.getAttribute("s_member_email");
+
+	List<String> airBooking_timeList = (List<String>)request.getAttribute("airBooking_timeList");
+	String vehicleKinds = (String)request.getAttribute("airBooking_vehicleList");
 	List<BookingVO> airBooking_countList = (List<BookingVO>)request.getAttribute("airBooking_countList");
 	
 	String airBooking_startCity = (String)request.getAttribute("airBooking_startCity");
@@ -18,6 +20,7 @@
 	String airBooking_kids = (String)request.getAttribute("airBooking_kids");
 	int airBooking_price = (int)request.getAttribute("airBooking_price")+ 100000;
 	int person_su = (int)request.getAttribute("airBooking_person_su")-1;
+	
 	
 	String[] dateTime = new String[airBooking_timeList.size()];
 	for(int i=0; i<airBooking_timeList.size(); i++){
@@ -38,18 +41,40 @@
 <script type="text/javascript" src="/webTestProject/style/js/bootstrap/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/bootstrap/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/webTestProject/style/css/booking/airplane/airBooking_detail.css" />
-<script type="text/javascript">		
+<script type="text/javascript">
 	function fnDateTime(date, time, city){
 		airBooking_date = date;
 		airBooking_time = time;
 		airBooking_city = city;
 	}
 	
-	$(function(){		
+	$(function(){
+		$(".air_time_table").css({
+			"margin-left" : "380px"
+		});
+		$("#air_insert").click(function(){
+			var seat = $("#seat_insert").text();
+			var air_insert = confirm("정말로 예매를 하시겠습니까?");
+			
+			if(air_insert){
+				document.airBookingInsert.method="post";
+				document.airBookingInsert.action = "/webTestProject/airBooking.air?airBooking_seat="+seat+"&airBooking_vehicle="+'<%=vehicleKinds%>'+"&start_airBooking_date="+airBooking_date+"&start_airBooking_time="+airBooking_time;
+				document.airBookingInsert.submit();
+			}
+			else{
+				alert("예매가 취소 되었습니다.");
+				location.href="/webTestProject/papercompany/airplane/airBooking.jsp"
+			}
+		});
+		
 		$(".air_remain").hide();
 		$(".air_buy_decide").hide();	
 		
 		$(".air_time_table_btn").click(function(){
+			$(".air_time_table").css({
+				"margin-left" : "180px"
+			});
+			
 			$("#seat_insert").html("");
 			$(".air_remain .air_remain_ul li").remove();
 			$(".air_remain").hide("fade");
@@ -74,13 +99,13 @@
 						su += 6;
 					}
 					if(i == 54){
-						makeTag += "<li style='border-color: white; border-top-color: skyblue;'>"+"</li>";
-						makeTag += "<li style='border-color: white; border-top-color: skyblue;'>"+"</li>";
-						makeTag += "<li style='border-color: white; border-top-color: skyblue;'>"+"</li>";
-						makeTag += "<li style='border-color: white;'>"+"</li>";
-						makeTag += "<li style='border-color: white; border-top-color: skyblue;'>"+"</li>";
-						makeTag += "<li style='border-color: white; border-top-color: skyblue;'>"+"</li>";
-						makeTag += "<li style='border-color: white; border-top-color: skyblue;'>"+"</li>";
+						makeTag += "<li style='border-color: white; border-top-color: skyblue;'></li>";
+						makeTag += "<li style='border-color: white; border-top-color: skyblue;'></li>";
+						makeTag += "<li style='border-color: white; border-top-color: skyblue;'></li>";
+						makeTag += "<li style='border-color: white;'></li>";
+						makeTag += "<li style='border-color: white; border-top-color: skyblue;'></li>";
+						makeTag += "<li style='border-color: white; border-top-color: skyblue;'></li>";
+						makeTag += "<li style='border-color: white; border-top-color: skyblue;'></li>";
 					}
 				}				
 			}
@@ -104,6 +129,7 @@
 					else{
 						$.each(data, function(key, value) {
 							var arr = new Array();
+							var airBooking_vehicle_code;
 							for(var i=1; i<121; i++){
 								if(i < 10){
 									arr[i] = $("#as0"+i).text();
@@ -114,13 +140,13 @@
 								if(arr[i] == value.seat_number &&
 									airBooking_date == value.dp_date &&
 									airBooking_time == value.time_time &&
+									airBooking_vehicle_code == value.vehicle_code&&
 									airBooking_city == value.city_city){
 										
 										$("#"+value.seat_number).css({
 											"background-color" : "lightgray"
 										});
 										$("#"+value.seat_number).off("click");
-										
 								}
 							}
 						});
@@ -132,6 +158,7 @@
 			});
 			
 			$(".orderby li").click(function(){
+				
 				var index = $(this).text();
 				var listLength = $(".air_remain .air_remain_ul li").length;
 				
@@ -170,6 +197,14 @@
 </script>
 </head>
 <body>
+	<%if(session_email == null){%>
+		<script type="text/javascript">
+			$(function(){
+				alert("정상적인 접근이 아닙니다.\n로그인을 하여 주세요.");
+				location.href="/webTestProject/index.jsp";
+			});
+		</script>
+	<%}else{ %>
 	<!-- 헤더 영역 -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<!-- 헤더 영역 -->
@@ -212,17 +247,17 @@
 								<h5>
 								<span><%=airBooking_date %></span>
 								&nbsp;&nbsp;
-								<span><%=airBooking_timeList.get(i)%></span> 
+								<span class="arrival_time"><%=airBooking_timeList.get(i)%></span> 
 								&nbsp;&nbsp;
 								<span>출발 : <b><%=airBooking_startCity%></b></span>
 								&nbsp;&nbsp;
 								<span>도착 : <b><%=airBooking_arrivalCity%></b></span>
 								</h5>
-								<%if(i%2 == 0){%>
-								<small><b><%=airBooking_vehicleList.get(1)%></b></small>
-								<%} else{%>
-								<small><b><%=airBooking_vehicleList.get(0)%></b></small>
-								<%}%>
+								<small class="vehicle" >
+									<b>
+										<%=vehicleKinds%>
+									</b>
+								</small>
 							</div>
 						</div>
 					</li>
@@ -234,7 +269,7 @@
 	</div>
 	
 	<!-- 잔여 좌석 -->
-	<div class="container air_remain" id="air_remain">
+	<div class="container air_remain" id="air_remain" >
 		<label for="air_remain"></label>
 		<div class="row">
 			<div class="span10">
@@ -267,13 +302,14 @@
                 <tbody>
                 	<!-- 예매 목록 -->
                     <tr>
-                        <td class="col-md-9"><em><%=airBooking_startCity%>출발 <%=airBooking_arrivalCity %>도착 &nbsp;&nbsp;<%=airBooking_date%> </em></td>
+                        <td class="col-md-9"><em><h3><%=airBooking_date%>&nbsp;&nbsp;<%=airBooking_startCity%> 출발&nbsp;&nbsp;<%=airBooking_arrivalCity %> 도착</h3></em></td>
                         <td class="col-md-1" style="text-align: center"  id="seat_insert">  </td>
                         <td class="col-md-1" style="text-align: center"><%=airBooking_adults %>  </td>
-                        <td class="col-md-1 text-center"><%=airBooking_kids %></td>
+                        <td class="col-md-1" style="text-align: center"><%=airBooking_kids %></td>
                         <td class="col-md-1 text-center"><%=airBooking_price %></td>
                     </tr>
                     <tr>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td class="text-right"><h4><strong>총액 : </strong></h4></td>
@@ -281,17 +317,27 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-success btn-lg btn-block">
-                결제 하기<span class="glyphicon glyphicon-chevron-right"></span>
-            </button>
+            <form name="airBookingInsert" >
+	            <input type="hidden" name="command" value="airBooking_insert">
+	            <input type="hidden" name="airBooking_startCity" value="<%=airBooking_startCity%>">
+	            <input type="hidden" name="airBooking_arrivalCity" value="<%=airBooking_arrivalCity %>">
+	            <input type="hidden" name="airBooking_date" value="<%=airBooking_date%>">
+	            
+	            <input type="hidden" name="airBooking_adults" value="<%=airBooking_adults %>">
+	            <input type="hidden" name="airBooking_kids" value="<%=airBooking_kids %>">
+	            <input type="hidden" name="airBooking_price" value="<%=airBooking_price * (person_su+1) %>">
+	            <button type="button" class="btn btn-success btn-lg btn-block" id="air_insert">
+	                	결제 하기<span class="glyphicon glyphicon-chevron-right"></span>
+	            </button>
+            </form>
         </div>
     </div>
     <!-- </div> -->
-
 	<!-- 본문 영역 -->
 	
 	<!-- 푸터 영역 -->
 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 	<!-- 푸터 영역 -->
+	<%}%>
 </body>
 </html>

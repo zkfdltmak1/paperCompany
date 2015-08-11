@@ -16,10 +16,17 @@
 <link href='http://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 <script type="text/javascript">
 	function fnGetReviewList(){
-		document.reviewList.method="post";
+		/* document.reviewList.method="post";
 		document.reviewList.action="/webTestProject/review_board.review";//서블릿을 다녀옴.
-		document.reviewList.submit();
+		document.reviewList.submit(); */
+		$(function(){
+			$("#reviewList").attr({
+				method : "POST",
+				action : "/webTestProject/review_board.review?nowPage=1"
+			}).submit();
+		});
 	}
+	
 	function fbGetBoardList(){
 		document.forumList.method="post";
 		document.forumList.action="/webTestProject/board/forum.do";//서블릿을 다녀옴.
@@ -45,15 +52,13 @@
 					<b>회원정보</b>
 					<ul>
 						<li><a href="#">예매확인</a></li>
-						<li><a href="#">마이페이지</a></li>
-						<li><a href="#">회원정보수정</a></li>
 					</ul>
 				</div>
 				<div class="header-user-menu">
 					<b>커뮤니티</b>
 					<ul>
 						<li>
-							<form name="reviewList">
+							<form name="reviewList" id="reviewList">
 								<a href="javascript:fnGetReviewList()">후기 게시판</a>
 								<input type="hidden" name="command" value="getReviewList">
 							</form>
@@ -65,7 +70,7 @@
 					<b>예매</b>
 					<ul>
 						<li><a href="#">버스 예매</a></li>
-						<li><a href="#">기차 예매</a></li>
+						<li><a href="/webTestProject/train/train.do?command=train_first">기차 예매</a></li>
 						<li><a href="/webTestProject/papercompany/airplane/airBooking.jsp">비행기 예매</a></li>
 					</ul>
 				</div>

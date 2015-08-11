@@ -21,7 +21,9 @@ public class ReplyDao {
 	public List<ReplyVO> getReplyforum(int reply_number){
 		List<ReplyVO> voList = new ArrayList<ReplyVO>();
 		StringBuilder sql = new StringBuilder();
-		sql.append("select REPLY_ID, REPLY_CONTENT from REPLY_FORUM where REVIEWS_NUMBER = ?");
+		sql.append("select (select m_nickname from member ");
+		sql.append("where member.m_email = reply_forum.reply_id) as reply_id, ");
+		sql.append("REPLY_CONTENT from REPLY_FORUM where REVIEWS_NUMBER = ?");
 		try{
 			con = dbMgr.getConnection();
 			pstmt = con.prepareStatement(sql.toString());

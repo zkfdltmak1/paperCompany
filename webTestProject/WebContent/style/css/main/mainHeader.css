@@ -142,3 +142,8 @@
 	line-height: 40px;
 	box-sizing: border-box;
 }
+
+ul{
+	margin-top: 0;
+	margin-bottom: 10px;
+}

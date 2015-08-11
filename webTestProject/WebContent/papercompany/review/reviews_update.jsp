@@ -3,6 +3,9 @@
     pageEncoding="UTF-8"%>
 <%
 	ReviewVO rvo = (ReviewVO)request.getAttribute("reviews_readVo");
+	int nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	
+	String session_email = (String)session.getAttribute("s_member_email");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -11,8 +14,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, 
 					maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
 <script type="text/javascript" src="/webTestProject/style/js/jquery/jquery-1.11.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/webTestProject/style/css/board/board.css" />
 <script type="text/javascript">
 	function fnReviewUpdate(){
 		var reviews_title = $("#reviews_title").val();
@@ -47,6 +50,16 @@
 <body>
 	<!-- Top  -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
+	
+	<%if(session_email.equals(null) || session_email == null ||
+			session_email == ""){%>
+			<script type="text/javascript">
+			$(function(){
+				alert("정상적인 접근이 아닙니다.\n로그인을 하여 주세요.");
+				location.href="/webTestProject/index.jsp";
+			});
+		</script>
+	<%}else{%>
 	<div class="con">
 		<form name="form_review_update" id="form_review_update">
 			<table id="table_board" class="list">
@@ -95,8 +108,11 @@
 				<input type="hidden" name="reviews_title" value="<%=rvo.getReviews_title()%>">
 				<input type="hidden" name="reviews_content" value="<%=rvo.getReviews_content()%>">
 				<input type="hidden" name="reviews_pw" value="<%=rvo.getReviews_pw()%>">
+				<input type="hidden" name="nowPage" value="<%=nowPage%>">
 			</form>
 	</div>
+	<%}%>
+	
 	<!-- footer -->	
 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 </body>

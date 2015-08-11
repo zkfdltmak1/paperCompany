@@ -14,9 +14,60 @@ public class ForumDAO {
 	DBConnectionMgr dbMgr = new DBConnectionMgr();
 	
 	
+	// 공지사항 게시판 전체 목록
+		public ArrayList<ForumVO> forumAllSearch(){
+			
+			ArrayList<ForumVO> fList = new ArrayList<ForumVO>();
+			StringBuffer sb = new StringBuffer();
+			
+			sb.append("select forum_number, forum_title from forum order by TO_NUMBER(forum_number) DESC");
+			
+			PreparedStatement pstmt =null;
+			Connection con = null;
+			ResultSet rs = null;
+			ForumVO fvo = null;
+			
+			try {
+				fvo = new ForumVO();
+				con = dbMgr.getConnection();
+				pstmt = con.prepareStatement(sb.toString());
+				
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()){
+					fvo = new ForumVO();
+					fvo.setForum_no(rs.getInt("forum_number"));
+					fvo.setForum_subject(rs.getString("forum_title"));
+					fList.add(fvo);
+				}
+				
+			}catch(SQLException se){
+				System.out.println("inmoney = [ "+se+" ]");
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			dbMgr.freeConnection(con, pstmt, rs);
+			
+			return fList;
+		}
 	
-	// 공지사항 게시판 첫 화면에 뿌려주는 목록
-	public ArrayList<ForumVO> forumSearch(){
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// 공지사항 게시판 페이징 목록
+	public ArrayList<ForumVO> forumSearch(int start, int end){
 		
 		ArrayList<ForumVO> fList = new ArrayList<ForumVO>();
 		StringBuffer sb = new StringBuffer();
@@ -35,12 +86,17 @@ public class ForumDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				fvo = new ForumVO();
-				fvo.setForum_no(rs.getInt("forum_number"));
-				fvo.setForum_subject(rs.getString("forum_title"));
-				fList.add(fvo);
-			}
+			
+				for(int i=1; i<start; i++){
+					rs.next();
+				}
+				for(int i=start; i<=end; i++){
+					rs.next();
+					fvo = new ForumVO();
+					fvo.setForum_no(rs.getInt("forum_number"));
+					fvo.setForum_subject(rs.getString("forum_title"));
+					fList.add(fvo);
+				}
 		}catch(SQLException se){
 				System.out.println("inmoney = [ "+se+" ]");
 				
@@ -51,6 +107,9 @@ public class ForumDAO {
 		
 		return fList;
 	}
+	
+	
+
 	
 	
 	//공지사항 타이틀 클릭했을때 클릭한 타이틀 정보 받아가는 메소드
@@ -98,7 +157,7 @@ public class ForumDAO {
 			public boolean writeForum(String forum_title, String forum_content){
 				StringBuffer dml = new StringBuffer();
 				dml.append("INSERT INTO forum(forum_number,forum_title,forum_content,m_email) ");
-				dml.append("VALUES(FORUM_SEQ.nextval, ?, ?, 'kdjjjpig@naver.com') ");
+				dml.append("VALUES(FORUM_SEQ.nextval, ?, ?, 'jslee80130@gmail.com') ");
 				
 				boolean success = false;
 				Connection	con = null;

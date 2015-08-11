@@ -15,7 +15,8 @@ $(function(){
 				return false;
 			}
 		 	else if($("#forum_title_id").val()!="" && $("#forum_content_id").val()!=""){ 
-				$("#w_forum_id").attr("action","/paperProject/board/forum.do");
+		 		$("#w_forum_id").attr("method","post");
+				$("#w_forum_id").attr("action","/webTestProject/board/forum.do");
 				$("#w_forum_id").submit();
 			} 
 		 });

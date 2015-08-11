@@ -7,6 +7,8 @@
    Date date = new java.util.Date();
    date.setMonth(date.getMonth()+1);
    String endday = formatter.format(date);
+   
+   String session_email = (String)session.getAttribute("s_member_email");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -29,6 +31,14 @@
 </script>
 </head>
 <body>
+	<%if(session_email == null){%>
+		<script type="text/javascript">
+			$(function(){
+				alert("정상적인 접근이 아닙니다.\n로그인을 하여 주세요.");
+				location.href="/webTestProject/index.jsp";
+			});
+		</script>
+	<%}else{ %>
 	<!-- 헤더 영역 -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	<!-- 헤더 영역 -->
@@ -119,5 +129,6 @@
 	<!-- 푸터 영역 -->
 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>
 	<!-- 푸터 영역 -->
+	<%}%>
 </body>
 </html>

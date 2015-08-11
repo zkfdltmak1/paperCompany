@@ -6,6 +6,9 @@
 	ReviewVO rvo = (ReviewVO)request.getAttribute("review_read");
 	List<ReplyVO> rpList = (List<ReplyVO>)request.getAttribute("rpList");
 	String session_id = (String)session.getAttribute("s_member_email");
+	int nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	
+	String session_email = (String)session.getAttribute("s_member_email");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -57,17 +60,25 @@
 	<!-- Top  -->
 	<jsp:include page="../mainBar/mainTop.jsp"></jsp:include>
 	
+	<%if(session_email.equals(null) || session_email == null ||
+			session_email == ""){%>
+			<script type="text/javascript">
+			$(function(){
+				alert("정상적인 접근이 아닙니다.\n로그인을 하여 주세요.");
+				location.href="/webTestProject/index.jsp";
+			});
+		</script>
+	<%}else{%>
 	<div class="con">
 		<table id="table_board" class="list">
 			<colgroup>
-				<col>
 				<col>
 				<col>
 			</colgroup>
 			<!-- 본문 제목 -->
 			<thead>
 				<tr>
-					<th colspan="3">
+					<th colspan="2">
 						<%=rvo.getReviews_title() %>
 					</th>
 				</tr>
@@ -75,23 +86,23 @@
 			<!-- 본문 내용 -->
 			<tbody>
 				<tr id="reviews_read_tbody" class="read">
-					<td colspan="3">
+					<td colspan="2" style="word-break:break-all;">
 						<%=rvo.getReviews_content() %>
 					</td>
 				</tr>
 				<!-- for문 돌림 -->
 				<%if(rpList == null){%>
 				<tr>
-					<td colspan="3">댓글을 등록해 주세요</td>
+					<td colspan="2">댓글을 등록해 주세요</td>
 				</tr>
 				<%} else{%>
 				<%for(int i=0; i<rpList.size(); i++){%>
 				<tr id="reply_list">
 					<td id="reply_list_id">
-						<%= rpList.get(i).getReply_id() %>
-					</td>
-					<td colspan="2" id="reply_list_content">
 						<%= rpList.get(i).getReply_content() %>
+					</td>
+					<td id="reply_list_content" style="word-break:break-all;">
+						<%= rpList.get(i).getReply_id() %>
 					</td>
 				</tr>
 				<%}
@@ -99,21 +110,25 @@
 				<!-- for문 돌림 -->
 				<form id="insertReply">
 					<tr class="reply">
-						<td colspan="2">
+						<td>
+							<div >
 								<input type="text" name="reviews_reply" id="reviews_reply" size="90">
+							</div>
 						</td>
 						<td>
-							<input type="button" value="댓글 작성" onclick="insertReply()">
-							<input type="hidden" name="command" value="insertReply">
-							<input type="hidden" name="reviews_number" value="<%=rvo.getReviews_number()%>">
-							<input type="hidden" name="session_id" value="<%=session_id%>">
-							
+							<div>
+								<input type="button" value="댓글 작성" onclick="insertReply()">
+								<input type="hidden" name="command" value="insertReply">
+								<input type="hidden" name="reviews_number" value="<%=rvo.getReviews_number()%>">
+								<input type="hidden" name="session_id" value="<%=session_id%>">
+								<input type="hidden" name="nowPage" value="<%=nowPage%>">
+							</div>
 						</td>
 					</tr>
 				</form>
 			</tbody>
 			<tfoot class="r_read">
-				<td colspan="3">
+				<td colspan="2">
 					<form name="f_readUpdate" id="f_readUpdate">
 							<a href="javascript:fnReadUpdateProc()">수정</a> | 
 							<input type="hidden" name="command" value="readUpadateProc">
@@ -121,6 +136,7 @@
 							<input type="hidden" name="reviews_title" value="<%=rvo.getReviews_title()%>">
 							<input type="hidden" name="reviews_content" value="<%=rvo.getReviews_content()%>">
 							<input type="hidden" name="reviews_pw" value="<%=rvo.getReviews_pw()%>">
+							<input type="hidden" name="nowPage" value="<%=nowPage%>">
 					</form>
 					<%if(session_id.equals(rvo.getM_email())){%>
 					<form name="f_readDelet" id="f_readDelete">
@@ -129,13 +145,15 @@
 							<input type="hidden" name="reviews_number" value="<%= rvo.getReviews_number() %>">
 							<input type="hidden" name="reviews_pw" value="<%= rvo.getReviews_pw() %>">
 							<input type="hidden" name="reviews_reply_size" value="<%= rpList.size() %>">
+							<input type="hidden" name="nowPage" value="<%=nowPage%>">
 					</form>
 					<%}%>
-					<a href="javascript:history.back()">목록으로</a>
+					<a href="/webTestProject/review_board.review?command=getReviewList&nowPage=<%=nowPage%>">목록으로</a>
 				</td>
 			</tfoot>
 		</table>
 	</div>
+	<%}%>
 	
 	<!-- footer -->
 	<jsp:include page="../mainBar/mainFooter.jsp"></jsp:include>

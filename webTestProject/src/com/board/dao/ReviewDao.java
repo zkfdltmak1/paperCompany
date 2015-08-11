@@ -74,24 +74,58 @@ public class ReviewDao {
 		
 	}
 	
+	// 후기 게시판 전체 글 갯수 구하기
+	public int getReviewTotal(){
+		int total = 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("select count(*) as count from reviews_forum");
+		
+		try{
+			con = dbMgr.getConnection();
+			pstmt = con.prepareStatement(sql.toString());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()){
+				total = rs.getInt("count");
+			}
+		}
+		catch(SQLException e){
+			e.printStackTrace();
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally{
+			dbMgr.freeConnection(con, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
 	//후기 게시판 전체 리스트 불러오기
-	public List<ReviewVO> getReviewList(){
+	public List<ReviewVO> getReviewList(int startPageNum, int endPageNum){
 		List<ReviewVO> reviewList = new ArrayList<ReviewVO>();
 		StringBuffer tml= new StringBuffer();
-		tml.append("select reviews_number, reviews_title, reviews_content, reviews_pw, m_email from Reviews_forum");
+		tml.append("select * from "); 
+		tml.append("(select /*+ INDEX_DESC(review reviews_number) */ ");
+		tml.append("rownum rnum, reviews_number, reviews_title, ");
+		tml.append("(select m_nickname from member where ");
+		tml.append("member.m_email = review.m_email) as m_nickname ");
+		tml.append("from reviews_forum review) ");
+		tml.append("where rnum between ? and ?");
 		
 		try{
 			con = dbMgr.getConnection();
 			pstmt = con.prepareStatement(tml.toString());
+			pstmt.setInt(1, startPageNum);
+			pstmt.setInt(2, endPageNum);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				ReviewVO rvo = new ReviewVO();
 				rvo.setReviews_number(rs.getInt("reviews_number"));
 				rvo.setReviews_title(rs.getString("reviews_title"));
-				rvo.setReviews_content(rs.getString("reviews_content"));
-				rvo.setReviews_pw(rs.getString("reviews_pw"));
-				rvo.setM_email(rs.getString("m_email"));
+				rvo.setM_nickname(rs.getString("m_nickname"));
 				reviewList.add(rvo);
 			}
 		}catch(SQLException se){
@@ -124,6 +158,10 @@ public class ReviewDao {
 		catch(SQLException e){
 			e.printStackTrace();
 		}
+		finally{
+			dbMgr.freeConnection(con, pstmt);
+		}
+		
 		return result;
 	}
 	
@@ -142,6 +180,9 @@ public class ReviewDao {
 		}
 		catch(SQLException e){
 			e.printStackTrace();
+		}
+		finally{
+			dbMgr.freeConnection(con, pstmt);
 		}
 		
 		return result;
