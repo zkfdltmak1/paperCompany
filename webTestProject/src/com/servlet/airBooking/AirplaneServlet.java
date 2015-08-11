@@ -58,7 +58,6 @@ public class AirplaneServlet extends HttpServlet {
 			// 시간 리스트
 			List<String> airBooking_timeList = airDao.getTimeTable();
 			// 비행기 종류
-			String vehicleKinds = airDao.getVehicleKinds();
 			// 가격
 			int airBooking_price = airDao.getPrice(airBooking_startCity, airBooking_arrivalCit);
 			// 대인과 소인 명 수
@@ -68,7 +67,6 @@ public class AirplaneServlet extends HttpServlet {
 			
 			req.setAttribute("airBooking_countList", countList);
 			req.setAttribute("airBooking_timeList", airBooking_timeList);
-			req.setAttribute("airBooking_vehicleList", vehicleKinds);
 			
 			req.setAttribute("airBooking_price", airBooking_price);
 			req.setAttribute("airBooking_startCity", airBooking_startCity);
@@ -143,7 +141,6 @@ public class AirplaneServlet extends HttpServlet {
 			String start_airBooking_time = req.getParameter("start_airBooking_time");
 			String person = airBooking_adults+" "+airBooking_kids;
 			
-			System.out.println("person : "+person);
 			bvo.setArrival_time(start_airBooking_time);
 			bvo.setBooking_price(airBooking_price);
 			bvo.setBooking_code(airBooking_booking_code);

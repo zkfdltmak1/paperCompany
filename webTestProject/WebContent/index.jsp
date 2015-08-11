@@ -8,7 +8,8 @@
 		out.write("<script type='text/javascript'>\n");
 		out.write("alert('회원 가입에 성공 하셨습니다');");
 		out.write("</script>\n");
-	}else if("가입실패".equals(join_succes)){
+	}
+	else if("가입실패".equals(join_succes)){
 		out.write("<script type='text/javascript'>\n");
 		out.write("alert('회원 가입에 실패 하셨습니다');");
 		out.write("</script>\n");
@@ -21,7 +22,8 @@
 		out.write("alert('사용자의 아이디는 :"+ member_email+ "');");
 		out.write("</script>\n");
 		
-	}else if("이메일없음".equals(member_email)){
+	}
+	else if("이메일없음".equals(member_email)){
 		out.write("<script type='text/javascript'>\n");
 		out.write("alert('사용자의 아이디가 없습니다.');");
 		out.write("</script>\n");
@@ -33,7 +35,8 @@
 		out.write("alert('사용자의 패스워드는 :"+ member_pw+ "');");
 		out.write("</script>\n");
 		
-	}else if("패스워드없음".equals(member_pw)){
+	}
+	else if("패스워드없음".equals(member_pw)){
 		out.write("<script type='text/javascript'>\n");
 		out.write("alert('사용자의 패스워드가 없습니다');");
 		out.write("</script>\n");

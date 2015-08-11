@@ -243,6 +243,9 @@
 										<%}%>
 										<%=count%>
 									</small></a>
+									<%if(count == 0){%>
+										<a href="#" onclick="javascript:fnDateTime('<%=airBooking_date %>','<%=airBooking_timeList.get(i)%>', '<%=airBooking_arrivalCity%>')" class="btn btn-primary icon  pull-right air_time_table_btn disabled"><small>마감</small></a>
+									<%}%>
 								<%}%>
 								<h5>
 								<span><%=airBooking_date %></span>
