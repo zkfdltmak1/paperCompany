@@ -51,7 +51,7 @@
 				<div class="header-user-menu">
 					<b>회원정보</b>
 					<ul>
-						<li><a href="#">예매확인</a></li>
+						<li><a href="/webTestProject/book/bookingAllCheck.do">예매확인</a></li>
 					</ul>
 				</div>
 				<div class="header-user-menu">
@@ -63,7 +63,6 @@
 								<input type="hidden" name="command" value="getReviewList">
 							</form>
 						</li>
-						<li><a href="#">Q&A</a></li>
 					</ul>
 				</div>
 				<div class="header-user-menu">

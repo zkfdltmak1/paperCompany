@@ -93,7 +93,7 @@
 	
 	<servlet>
 		<servlet-name>bookingAllCheck</servlet-name>
-		<servlet-class>com.servlet.bookingCheck.BookingCheckServlet</servlet-class>
+		<servlet-class>com.servlet.bookingcheck.BookingCheckServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>bookingAllCheck</servlet-name>
