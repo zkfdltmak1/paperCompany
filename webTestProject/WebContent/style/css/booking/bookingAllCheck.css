@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+
+body {
+		width: 100%;
+		height: 100%;
+		margin:0;
+	}
+	#main{
+
+	width: 1000px;
+	/* background: url("/webTestProject/style/image/background_section.png") center center no-repeat;  
+	background-size: 3000px 2000px; */
+	background-color: #eee;
+	margin:0 auto;
+	padding-top: 150px;
+	padding-bottom: 300px;
+	color: #eee;
+	text-align: center;
+	
+
+	}
+	
+	p{
+		font-size: 50px;
+		color: #400040;
+		-webkit-text-stroke: 1px rgba(142, 128, 113, 0.5);
+		-moz-text-stroke: 1px rgba(142, 128, 113, 0.5);
+		-ms-text-shadow : 1px 1px 1px rgba(142,128,113, 0.3);
+		-moz-text-shadow : 1px 1px 1px rgba(142,128,113, 0.3);
+		-webkit-font-smoothing: antialiased;
+		font-smoothing: antialiased;
+	}
+	#bookingAllcheck_table_id th{
+		color: #8e8071 !important;
+	}
+	
+	#bookingAllcheck_table_id {
+		font-size: 13px;
+		margin:0 auto;
+		width: 900px;
+		border-style: solid;
+		border-color: #bdbab4;
+		border-radius: 15px;
+		border-spacing: 0px;
+		overflow: hidden;
+		color: #000000;
+		text-align: center;
+		font-weight: bold;
+	}
+	
