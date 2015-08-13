@@ -99,4 +99,13 @@
 		<servlet-name>bookingAllCheck</servlet-name>
 		<url-pattern>/book/bookingAllCheck.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>bus</servlet-name>
+		<servlet-class>com.servlet.bus.Bus_Servlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>bus</servlet-name>
+		<url-pattern>/bus/bus.do</url-pattern>
+	</servlet-mapping>
 </web-app>

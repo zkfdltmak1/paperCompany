@@ -10,7 +10,7 @@
 	String session_email = (String)session.getAttribute("s_member_email");
 
 	List<String> airBooking_timeList = (List<String>)request.getAttribute("airBooking_timeList");
-	String vehicleKinds = (String)request.getAttribute("airBooking_vehicleList");
+	String airBooking_vehicleKinds = (String)request.getAttribute("airBooking_vehicleKinds");
 	List<BookingVO> airBooking_countList = (List<BookingVO>)request.getAttribute("airBooking_countList");
 	
 	String airBooking_startCity = (String)request.getAttribute("airBooking_startCity");
@@ -18,7 +18,7 @@
 	String airBooking_date = (String)request.getAttribute("airBooking_date");
 	String airBooking_adults = (String)request.getAttribute("airBooking_adults");
 	String airBooking_kids = (String)request.getAttribute("airBooking_kids");
-	int airBooking_price = (int)request.getAttribute("airBooking_price")+ 100000;
+	int airBooking_price = (int)request.getAttribute("airBooking_price")+ 30000;
 	int person_su = (int)request.getAttribute("airBooking_person_su")-1;
 	
 	
@@ -58,7 +58,7 @@
 			
 			if(air_insert){
 				document.airBookingInsert.method="post";
-				document.airBookingInsert.action = "/webTestProject/airBooking.air?airBooking_seat="+seat+"&airBooking_vehicle="+'<%=vehicleKinds%>'+"&start_airBooking_date="+airBooking_date+"&start_airBooking_time="+airBooking_time;
+				document.airBookingInsert.action = "/webTestProject/airBooking.air?airBooking_seat="+seat+"&airBooking_vehicle="+'<%=airBooking_vehicleKinds%>'+"&start_airBooking_date="+airBooking_date+"&start_airBooking_time="+airBooking_time;
 				document.airBookingInsert.submit();
 			}
 			else{
@@ -129,7 +129,8 @@
 					else{
 						$.each(data, function(key, value) {
 							var arr = new Array();
-							var airBooking_vehicle_code;
+							var airBooking_vehicle_code = '<%=airBooking_vehicleKinds%>';
+							
 							for(var i=1; i<121; i++){
 								if(i < 10){
 									arr[i] = $("#as0"+i).text();
@@ -137,12 +138,14 @@
 									arr[i] = $("#as"+i).text();
 								}
 								
+								alert(value.vehicle_code + ", " + airBooking_vehicle_code);
 								if(arr[i] == value.seat_number &&
 									airBooking_date == value.dp_date &&
 									airBooking_time == value.time_time &&
 									airBooking_vehicle_code == value.vehicle_code&&
 									airBooking_city == value.city_city){
 										
+										alert("실행되?");
 										$("#"+value.seat_number).css({
 											"background-color" : "lightgray"
 										});
@@ -258,7 +261,7 @@
 								</h5>
 								<small class="vehicle" >
 									<b>
-										<%=vehicleKinds%>
+										<%=airBooking_vehicleKinds%>
 									</b>
 								</small>
 							</div>
@@ -320,7 +323,7 @@
                     </tr>
                 </tbody>
             </table>
-            <form name="airBookingInsert" >
+            <form name="airBookingInsert" id="airBookingInsert">
 	            <input type="hidden" name="command" value="airBooking_insert">
 	            <input type="hidden" name="airBooking_startCity" value="<%=airBooking_startCity%>">
 	            <input type="hidden" name="airBooking_arrivalCity" value="<%=airBooking_arrivalCity %>">

@@ -68,7 +68,7 @@
 				<div class="header-user-menu">
 					<b>예매</b>
 					<ul>
-						<li><a href="#">버스 예매</a></li>
+						<li><a href="/webTestProject/bus/bus.do?command=bus_first">버스 예매</a></li>
 						<li><a href="/webTestProject/train/train.do?command=train_first">기차 예매</a></li>
 						<li><a href="/webTestProject/papercompany/airplane/airBooking.jsp">비행기 예매</a></li>
 					</ul>

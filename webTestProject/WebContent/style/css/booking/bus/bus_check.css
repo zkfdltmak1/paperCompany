@@ -1,0 +1,160 @@
+@CHARSET "UTF-8";
+
+@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
+@import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumbrushscript.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+body {
+	width: 100%;
+	height: 100%;
+	margin:0;
+}
+
+#main{
+	width: 1000px;
+	height: 740px;
+	background-color: #eee;
+	margin:0 auto;
+	padding-top: 180px;
+	padding-bottom: 50px;
+	font-family: 'Nanum Gothic', sans-serif;
+	color: #eee;
+}
+
+.bus_mainForm{
+	text-align: center;
+	padding-bottom: 100px; 
+}
+
+.bus_mainForm p{
+	font-size: 50px;
+	color: #400040;
+	-webkit-text-stroke: 1px rgba(142, 128, 113, 0.5);
+	-moz-text-stroke: 1px rgba(142, 128, 113, 0.5);
+	-ms-text-shadow : 1px 1px 1px rgba(142,128,113, 0.3);
+	-moz-text-shadow : 1px 1px 1px rgba(142,128,113, 0.3);
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+}
+
+#bus_detail_form{
+	padding-top: 50px;
+}
+
+.bus_table_id a {
+	text-decoration: none;
+}
+
+.bus_table_id {
+	font-size: 21px;
+	margin:0 auto;
+	margin-bottom: 100px;
+	width: 800px;
+	border: 2px solid #0080ff ;
+	overflow: hidden;
+	color: black;
+	text-align: center;
+}
+
+.bus_table_id th {
+	background-color: #68b0c8;
+	text-align: center;
+	color: black;
+	height: 28px;
+	-webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+	font-weight: 200px;
+}
+
+.bus_table_id th {
+	padding: 3px 5px;
+	background-color: #68b0c8;
+	color: black;
+	height: 28px;
+	-webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+	font-weight: 300px;
+	border: 2px solid #0080ff;
+}
+
+
+.bus_table_id td {
+	text-align : center;
+	padding: 3px 5px;
+	border: 2px solid #0080ff;
+}
+
+.bus_table_id tr td:nth-child(2){
+	padding-left: 10px;
+}
+
+.bus_mainForm input {
+	color: #8e8071;
+}
+
+.bus_mainForm input:link {
+	color: #8e8071;
+}
+
+.bus_mainForm input:visited {
+	color: #8e8071;
+}
+.bus_mainForm input:active {
+	color: #8e8071;
+}
+
+.bus_mainForm input:hover {
+	color: #0681ce;
+} 
+
+.bus_table_id a:hover {
+	color: #0681ce;
+}
+
+.bus_table_id.bus_table_class a {
+	color: #8e8071;
+}
+
+.bus_table_id.bus_table_class a:link {
+	color: #8e8071;
+}
+
+.bus_table_id.bus_table_class a:visited {
+	color: #8e8071;
+}
+
+.tbus_table_id.bus_table_class a:hover {
+	color: #0681ce;
+}
+
+.bus_table_id.bus_table_class a:active {
+	color: #8e8071;
+}
+
+ .bus_table_id.bus_table_class td:hover * {
+	color: #0681ce !important;
+} 
+
+.bus_table_id.bus_table_class input {
+	color: #8e8071;
+}
+
+.bus_table_id.bus_table_class input:link {
+	color: #8e8071;
+}
+
+.bus_table_id.bus_table_class input:visited {
+	color: #8e8071;
+}
+
+.tbus_table_id.bus_table_class input:hover {
+	color: #0681ce;
+}
+
+.bus_table_id.bus_table_class input:active {
+	color: #8e8071;
+}
+
+.bus_table_id input:hover {
+	color: #0681ce;
+	
+}

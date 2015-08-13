@@ -47,8 +47,6 @@ public class AirplaneServlet extends HttpServlet {
 		session = req.getSession();
 		
 		if("airBooking_detail".equals(command)){
-			
-			//airBooking.jsp -> airBooking_loading.jsp -> airBooking_detail.jsp
 			String  airBooking_startCity = req.getParameter("airBooking_startCity");
 			String  airBooking_arrivalCit = req.getParameter("airBooking_arrivalCity");
 			String  airBooking_date = req.getParameter("airBooking_date");
@@ -58,6 +56,7 @@ public class AirplaneServlet extends HttpServlet {
 			// 시간 리스트
 			List<String> airBooking_timeList = airDao.getTimeTable();
 			// 비행기 종류
+			String airBooking_vehicleKinds = airDao.getVehicleKinds();
 			// 가격
 			int airBooking_price = airDao.getPrice(airBooking_startCity, airBooking_arrivalCit);
 			// 대인과 소인 명 수
@@ -67,7 +66,7 @@ public class AirplaneServlet extends HttpServlet {
 			
 			req.setAttribute("airBooking_countList", countList);
 			req.setAttribute("airBooking_timeList", airBooking_timeList);
-			
+			req.setAttribute("airBooking_vehicleKinds", airBooking_vehicleKinds);
 			req.setAttribute("airBooking_price", airBooking_price);
 			req.setAttribute("airBooking_startCity", airBooking_startCity);
 			req.setAttribute("airBooking_arrivalCit", airBooking_arrivalCit);
@@ -153,13 +152,14 @@ public class AirplaneServlet extends HttpServlet {
 			bvo.setBooking_age(person);
 			
 			int success = adao.booking_Dcode_Insert(bvo);
-			RequestDispatcher view = 
-					req.getRequestDispatcher("./index.jsp");
-			view.forward(req, resp);
 			if (success >0) {
-				System.out.println("성공");
+				RequestDispatcher view = 
+						req.getRequestDispatcher("/webTestProject/book/bookingAllCheck.do?s_member_email="+s_member_email);
+				view.forward(req, resp);
 			}else{
-				System.out.println("실패");
+				RequestDispatcher view = 
+						req.getRequestDispatcher("/webTestProject/papercompany/airplane/airBooking.jsp");
+				view.forward(req, resp);
 			}
 
 			

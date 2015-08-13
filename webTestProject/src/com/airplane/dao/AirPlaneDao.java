@@ -43,8 +43,8 @@ public class AirPlaneDao {
 		return timeList;
 	}
 	
-	public List<String> getVehicleKinds(){
-		List<String> airList = new ArrayList<String>();
+	public String getVehicleKinds(){
+		String vehicleKinds = "";
 		StringBuffer sql = new StringBuffer();
 		sql.append("select vehicle_kinds ");
 		sql.append("from vehicle ");
@@ -56,9 +56,8 @@ public class AirPlaneDao {
 			pstmt = con.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()){
-				String time = rs.getString("vehicle_kinds");
-				airList.add(time);
+			if(rs.next()){
+				vehicleKinds = rs.getString("vehicle_kinds");
 			}
 			
 		}
@@ -66,7 +65,7 @@ public class AirPlaneDao {
 			e.printStackTrace();
 		}
 		
-		return airList;
+		return vehicleKinds;
 	}
 
 	public int getPrice(String startCity, String arrivalCit) {
@@ -258,7 +257,6 @@ public int booking_Dcode_Insert(BookingVO bvo) {
 	
 
 	for (st = 0; st < seat_code.length; st++) {
-		System.out.println("VEHICLE_CODE : " + bvo.getVehicle_code());
 		String[] person_all = peral.toString().split(" ");
 			try {
 					con = dbMgr.getConnection();
@@ -274,15 +272,13 @@ public int booking_Dcode_Insert(BookingVO bvo) {
 					pstmt.setString(9, arrival_airBooking_time);
 					pstmt.setString(10, bvo.getDp_date());
 					success = pstmt.executeUpdate();
-					System.out.println("success : "+success);
 				} catch (SQLException se) {
 					se.printStackTrace();
 				}catch (Exception e) {
 					e.printStackTrace();
 				}	
 		}
-	System.out.println("succes_all "+success);
-	close_all();
+	dbMgr.freeConnection(con, pstmt);
 	return success;	
 }
 
